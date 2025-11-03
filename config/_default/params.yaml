@@ -13,9 +13,9 @@ marketing:
   seo:
     site_type: Person
     local_business_type: ''
-    org_name: ''
-    description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
-    twitter: 'GetResearchDev'
+    org_name: 'University of Cambridge'
+    description: 'Bernardo Villegas - PhD student in Human-Inspired AI at Cambridge University. Researching AI ethics, social evaluation of AI, and large language models. Bridging social science and technology to create AI with humanity in mind.'
+    twitter: 'Bernardo__VM'
   analytics:
     google_analytics: ''
     baidu_tongji: ''
