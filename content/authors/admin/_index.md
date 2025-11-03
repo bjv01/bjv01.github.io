@@ -33,9 +33,6 @@ organizations:
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
-  - icon: at-symbol
-    url: 'mailto:bjv30@cam.ac.uk'
-    label: E-mail Me
   - icon: brands/x
     url: https://twitter.com/Bernardo__VM
   - icon: brands/github
@@ -172,10 +169,10 @@ awards:
       Recognized for contributions to scaling laws in deep learning.
 ---
 
-Sociologist and data scientist committed to developing artificial intelligence with humanity in mind. 
+Bridging social science and technology to create AI with humanity in mind.
 
-PhD student in the Human-Inspired Artificial Intelligence at the Center for Human Inspired AI at the University of Cambridge. My research ultimately points towards increase human agency over AI tools, looking to integrate them as thought partners. 
+I work at the intersection of AI research, social science, and tech development. My focus is twofold: measuring and understanding AI's social impacts, and developing technology that genuinely serves human needs and enhances human capabilities.
 
+Currently pursuing my PhD in Human-Inspired Artificial Intelligence at the Center for Human-Inspired AI (CHIA) at the University of Cambridge, I'm part of the Trace Lab, supervised by Umang Bhatt and co-supervised by Anna Korhonen. I have a particular interest in how culture shapes AI adoption and its cognitive and social impacts, looking to develop AI tools as thought partners—systems that amplify human agency rather than replace it. My background in sociology (Pontifical Catholic University of Ecuador) and data science (University of Edinburgh) allows me to translate between disciplines: understanding social dynamics and human behavior, then designing computational systems that respond to those realities.
 
-
-Latin America must be a protagonist in global conversations about ethical AI, contributing critical perspectives, creativity, and social commitment.
+Technology, and AI in particular, is shaping how societies develop. My work ensures these systems are designed with clarity about their impact on individuals and communities, creating solutions that are both technically robust and socially meaningful.
