@@ -1,13 +1,13 @@
 ---
 # Display name
-title: Bernardo Villegas
+title: Bernardo Villegas Moreno
 
 # Name pronunciation (optional)
 name_pronunciation: 'he/him'
 
 # Full name (for SEO)
 first_name: Bernardo
-last_name: Villegas
+last_name: Villegas Moreno
 
 # Pronouns (optional)
 pronouns: he/him
