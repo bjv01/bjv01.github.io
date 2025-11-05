@@ -53,3 +53,5 @@ security:
   _merge: deep
 sitemap:
   _merge: deep
+
+# Force rebuild: 2025-01-05
