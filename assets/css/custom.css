@@ -1,1 +1,100 @@
+/* Custom warm earthy color palette inspired by hannahrosekirk.com */
+
+:root {
+  /* Primary warm brown/orange palette */
+  --primary-50: #fef6f0;
+  --primary-100: #fde9dc;
+  --primary-200: #fbd0b8;
+  --primary-300: #f8af89;
+  --primary-400: #f48658;
+  --primary-500: #ef6632;
+  --primary-600: #d94e1f;
+  --primary-700: #b53d19;
+  --primary-800: #93341b;
+  --primary-900: #792e1a;
+  --primary-950: #41150c;
+
+  /* Neutral warm tones */
+  --neutral-50: #faf9f7;
+  --neutral-100: #f5f3ef;
+  --neutral-200: #e8e4dc;
+  --neutral-300: #d9d2c5;
+  --neutral-400: #c4b9a7;
+  --neutral-500: #b3a490;
+  --neutral-600: #9d8d79;
+  --neutral-700: #847765;
+  --neutral-800: #6d6356;
+  --neutral-900: #5a5249;
+  --neutral-950: #2f2b26;
+}
+
+/* Apply warm palette to light mode */
+html:not(.dark) {
+  --tw-prose-body: var(--neutral-900);
+  --tw-prose-headings: var(--neutral-950);
+  --tw-prose-links: var(--primary-600);
+  --tw-prose-bold: var(--neutral-900);
+  --tw-prose-counters: var(--neutral-600);
+  --tw-prose-bullets: var(--neutral-400);
+  --tw-prose-hr: var(--neutral-200);
+  --tw-prose-quotes: var(--neutral-900);
+  --tw-prose-quote-borders: var(--primary-300);
+  --tw-prose-captions: var(--neutral-600);
+  --tw-prose-code: var(--neutral-900);
+  --tw-prose-pre-code: var(--neutral-200);
+  --tw-prose-pre-bg: var(--neutral-900);
+
+  /* Background colors */
+  background-color: #fffaf5;
+}
+
+/* Apply warm palette to dark mode */
+html.dark {
+  --tw-prose-body: var(--neutral-200);
+  --tw-prose-headings: var(--neutral-50);
+  --tw-prose-links: var(--primary-400);
+  --tw-prose-bold: var(--neutral-100);
+  --tw-prose-counters: var(--neutral-400);
+  --tw-prose-bullets: var(--neutral-600);
+  --tw-prose-hr: var(--neutral-800);
+  --tw-prose-quotes: var(--neutral-200);
+  --tw-prose-quote-borders: var(--primary-700);
+  --tw-prose-captions: var(--neutral-400);
+  --tw-prose-code: var(--neutral-200);
+  --tw-prose-pre-code: var(--neutral-300);
+  --tw-prose-pre-bg: var(--neutral-900);
+
+  /* Background colors */
+  background-color: #1a1512;
+}
+
+/* Link hover effects with warm tones */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-500) !important;
+}
+
+/* Button styling with warm palette */
+.btn-primary {
+  background-color: var(--primary-600);
+  border-color: var(--primary-600);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-700);
+  border-color: var(--primary-700);
+}
+
+/* Accent elements */
+.bg-primary-300 {
+  background-color: var(--primary-300) !important;
+}
+
+.dark .bg-primary-700 {
+  background-color: var(--primary-800) !important;
+}
+
 /* Custom styles */
