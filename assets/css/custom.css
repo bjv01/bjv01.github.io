@@ -98,3 +98,13 @@ a:hover {
 }
 
 /* Custom styles */
+
+/* Reduce font size for education and experience section summary text */
+.resume-biography-3 .prose p,
+[id*="experience"] .prose p,
+[id*="education"] .prose p,
+.hx-timeline .prose p,
+.hx-timeline-item .prose p {
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.5 !important;
+}

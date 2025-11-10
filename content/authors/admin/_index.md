@@ -55,7 +55,7 @@ interests:
 
 education:
   - area: PhD Human-Inspired Artificial Intelligence
-    institution: Cambridge University
+    institution: University of Cambridge
     icon: ""
     date_start: 2025-10-01
     date_end: ''
@@ -157,6 +157,13 @@ languages:
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
+  - title: MSc Distinction
+    url: https://www.ed.ac.uk/
+    date: '2023-11-01'
+    awarder: University of Edinburgh
+    icon: hero/academic-cap
+    summary: |
+      Graduated with Distinction (First-Class Honours) in MSc Data Science, Technology & Innovation, recognizing exceptional academic performance and research excellence.
   - title: Fondo Publícalo
     url: https://www.puce.edu.ec/
     date: '2020-06-01'
