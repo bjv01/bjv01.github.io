@@ -49,8 +49,9 @@ profiles:
 
 interests:
   - Social Evaluation of AI
-  - Large Language Models
+  - Natural Language Processing
   - Human Centered AI
+  - Explainable AI
   - AI Ethics
 
 education:
@@ -60,7 +61,8 @@ education:
     date_start: 2025-10-01
     date_end: ''
     summary: |
-      First cohort
+      Supervisor: Dr. Umang Bhatt
+      Cosupervisor: Prof. Anna Korhonen
     button:
       text: 'See my profile'
       url: 'https://www.chia.cam.ac.uk/team/bernardo-villegas-moreno'
@@ -70,30 +72,27 @@ education:
     date_start: 2021-09-01
     date_end: 2023-11-17
     summary: |
-      First-Class Honours (Graduated with distinction)
-
+      First-Class Honours (Distinction)
       Supervisor: Dr. Gian Marco Campagnolo
-
       Thesis: A social data science metric for machine learning interpretability
-  - area: BA Sociology with Development
+  - area: BA Sociology with a minor in Development
     institution: Pontifical Catholic University of Ecuador
     icon: ""
     date_start: 2014-06-01
     date_end: 2019-06-30
     summary: |
-      Graduated with honors (10/10)
-
-      President of the Student Federation (2018) and representative to Superior Council (2017)
+      First-Class Honours (10/10)
+      President of the Student Union (2018) and representative to Superior Council (2017)
 
 work:
   - position: General Information Coordinator
-    company_name: Vicedeanery for Academic Affairs and Student Services - Pontifical Catholic University of Ecuador
+    company_name: Vicerectorate for Academic Affairs and Student Services - Pontifical Catholic University of Ecuador
     company_url: 'https://www.puce.edu.ec/'
     icon: ''
     date_start: 2019-09-01
     date_end: ''
     summary: |2-
-      Provide strategic advice to the Vicedeanery for Academic Affairs and Student Services, coordinate the execution of high-relevance institutional projects, and supervise key activities related to Teaching and Student management across 7 campuses (Quito, Amazonas, Ambato, Esmeraldas, Ibarra, Manabí, and Santo Domingo).
+      Provide strategic advice to the Vicedeanery for Academic Affairs and Student Services, coordinate the execution of high-relevance institutional projects, and supervise key activities related to Teaching and Student management across 7 campuses.
 
       My interdisciplinary background in social sciences, combined with my technical expertise in information management, AI application development, and data science are key factors in my contribution to the institution.
 
@@ -164,7 +163,7 @@ awards:
     icon: hero/academic-cap
     summary: |
       Graduated with Distinction (First-Class Honours) in MSc Data Science, Technology & Innovation, recognizing exceptional academic performance and research excellence.
-  - title: Fondo Publícalo
+  - title: Academic Publishing Award
     url: https://www.puce.edu.ec/
     date: '2020-06-01'
     awarder: Pontifical Catholic University of Ecuador
