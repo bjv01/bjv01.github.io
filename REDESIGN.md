@@ -1,60 +1,71 @@
 # Homepage redesign — 2026 ("The Sociomatrix")
 
-The site homepage was replaced with a single-page design (August 2026). This note documents
-what changed, how it is built, and how to maintain or roll it back.
+The site homepage was replaced with a custom single-page design (August 2026). This documents
+what changed, how it is built, how to edit/redeploy, and how to roll back.
 
-## What changed
+## What it is
 
-- **New homepage:** a self-contained one-page site with an animated hero (an organic network of
-  people and AI agents where the "secondhand AI" effect transmits along the connections), followed
-  by content sections: `_me`, Research, Publications, Talks & posters, The path, Teaching,
-  Fellowships & awards, Contact, Affiliations.
-- **Identity:** "The Sociomatrix" — white ground, lacquer ink, one sociometric red; Josefin Sans
-  (caps) + Spectral (reading). See `DESIGN.md` and `PRODUCT.md` on branch `redesign/sociomatrix`.
-- The previous Hugo Blox academic-CV homepage is **preserved** (see Rollback).
+A self-contained one-page site, **live at https://bjv01.github.io**. Hero: an animated network of
+people and AI agents where the AI effect transmits along the connections (the "secondhand AI" /
+ripple-effects idea), seeded at middle-right. Subhero is the CV thesis line. Sections, in order:
+
+1. `_me`  2. Research  3. Publications  4. Talks & posters  5. The path
+6. Teaching  7. Fellowships & awards  8. Contact  9. Affiliations (logos)
+
+Identity: white ground, lacquer ink, one sociometric red; Josefin Sans (caps) + Spectral (serif);
+strict square lattice, zero radius, no shadows. It has a mobile hamburger menu and respects
+`prefers-reduced-motion`.
 
 ## How it is built (important)
 
-Hugo Blox renders the home from `content/_index.md` (`type: landing`). A `static/index.html`
-does **not** override that on a clean CI build. So the homepage is served by a **custom Hugo
-template**:
+Hugo Blox renders the home from `content/_index.md` (`type: landing`). A `static/index.html` does
+**not** override that on a clean CI build. So the homepage is served by a **custom Hugo template**:
 
-- `layouts/index.html` — the entire self-contained page (HTML + inline CSS + inline JS/canvas).
-  It has no `{{ define }}` block, so Hugo renders it standalone and Blox's `baseof` is bypassed.
-- `content/_index.md` — neutralized to `title: ""` (the `type: landing` block was removed) so
+- **`layouts/index.html`** — the entire self-contained page (HTML + inline CSS + inline JS/canvas,
+  and the affiliation logos inlined as data-URIs). No `{{ define }}` block, so Hugo renders it
+  standalone and Blox's `baseof` is bypassed.
+- **`content/_index.md`** — neutralized to `title: ""` (the `type: landing` block was removed) so
   Hugo uses `layouts/index.html` instead of the Blox landing renderer.
 
-Deployment is automatic: pushing to `main` triggers `.github/workflows/deploy.yml`
-(`hugo --minify` → GitHub Pages) and publishes to https://bjv01.github.io.
-
-The site links to `/uploads/resume.pdf` (present in `static/uploads/`) and loads fonts from
-Google Fonts. Old inner Blox pages (e.g. `/me/`, `/research/`) still build but are unlinked; the
-new homepage navigates via in-page anchors (`#research`, `#publications`, …).
+Deployment is automatic: pushing to `main` runs `.github/workflows/deploy.yml`
+(`hugo --minify` → GitHub Pages). Assets: `/uploads/resume.pdf` (in `static/uploads/`); fonts from
+Google Fonts. Old Blox inner pages (`/me/`, `/research/`, …) still build but are unlinked; the
+homepage navigates via in-page anchors.
 
 ## How to edit / redeploy
 
-1. Edit `layouts/index.html` (it is a normal, self-contained HTML file).
-   - Design source of truth for iteration lives on branch `redesign/sociomatrix` and as a
-     published artifact; regenerate `layouts/index.html` from it if you prefer.
-2. Optional local check: `hugo --minify -d /tmp/out` then open `/tmp/out/index.html`
-   (note: untracked local files under `layouts/` can make a local build differ from CI).
+1. Edit `layouts/index.html` (a normal self-contained HTML file).
+2. Optional local check that matches CI (untracked files under `layouts/` can skew a local build):
+   ```
+   mv layouts/_default /tmp/hold 2>/dev/null   # hide untracked overrides
+   hugo --minify -d /tmp/out                    # open /tmp/out/index.html
+   mv /tmp/hold layouts/_default 2>/dev/null
+   ```
 3. `git add layouts/index.html && git commit && git push origin main` — Actions redeploys.
 
-## To-do
+## Design system & source
 
-- **Affiliations logos:** the strip currently shows text tiles. Add real crest/mark files for
-  TRACE Lab, University of Cambridge, Wolfson College, and eLab/SPARK (put them in
-  `static/logos/` and reference `/logos/…` from `layouts/index.html`).
+The full visual system and product context live on branch **`redesign/sociomatrix`**:
+`DESIGN.md`, `PRODUCT.md`, and a `design/` folder (identity, studies, notes). The editable design
+source is also mirrored as a private Claude artifact.
+
+## Affiliation logos
+
+All four are real, inlined as data-URIs, rendered grayscale to fit the identity:
+TRACE (from trace-lab.ai), University of Cambridge, Wolfson College, King's Entrepreneurship Lab
+(eLab / SPARK, from kingselab.org). To change one, replace its `data:` URI in the `.assoc` block of
+`layouts/index.html`. (Note: when downloading a logo, verify the file is a real image — GitHub
+Pages can transiently return an HTML 404 page for a missing asset.)
 
 ## Rollback
 
-The previous Hugo Blox site is on branch **`previous-site`** (commit `6501a84`).
-To restore it:
+The previous Hugo Blox site is on branch **`previous-site`** (commit `6501a84`):
 
 ```
 git checkout main
-git revert --no-edit be28148 152aaaa 05c0540 49605e8   # undo the redesign commits
-# — or — hard reset main to the previous site:
-# git reset --hard previous-site && git push --force-with-lease origin main
+# soft: revert the redesign commits
+git revert --no-edit $(git rev-list previous-site..main)
 git push origin main
+# — or hard: make main equal the previous site
+# git reset --hard previous-site && git push --force-with-lease origin main
 ```
