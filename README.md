@@ -2,6 +2,8 @@
 
 This repository contains the source code for my personal academic website, hosted at [bjv01.github.io](https://bjv01.github.io/).
 
+> **2026 redesign:** the homepage is now a custom single-page site rendered via `layouts/index.html` (with `content/_index.md` neutralized). See [`REDESIGN.md`](REDESIGN.md) for how it is built, how to edit/redeploy, and how to roll back. The previous Hugo Blox site is preserved on the `previous-site` branch.
+
 ## About
 
 I'm a PhD candidate at the Center for Human-Inspired Artificial Intelligence (CHIA), University of Cambridge. My research investigates the externalities of human-AI interaction—what happens when AI-assisted work flows to colleagues, patients, or decision-makers who weren't present.
