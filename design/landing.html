@@ -1,0 +1,230 @@
+<!--
+LANDING PAGE — The Sociomatrix (white-only). Full one-page site in the new identity.
+Hero (walking figure fills squares) + mechanism + work + path + me + contact.
+Identity: gallery paper ground, lacquer ink, one sociometric red per view; Josefin caps + Spectral;
+square lattice, 1px rules, zero radius, no shadows.
+-->
+<title>Villegas Moreno</title>
+<meta name="description" content="Bernardo Villegas Moreno — PhD candidate studying the externalities of human–AI interaction at the University of Cambridge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF; --silver:#8C9096; --silver-faint:#D3D5D8; --red:#C81E1E;
+    --cap:"Josefin Sans",Futura,"Century Gothic",sans-serif; --serif:"Spectral",Georgia,serif;
+    --pad:clamp(20px,5vw,64px);
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--ink);color:var(--paper)}
+  .cap{font-family:var(--cap);text-transform:uppercase;letter-spacing:.2em;font-weight:500}
+  .wrap{max-width:1200px;margin:0 auto;padding-inline:var(--pad)}
+  hr.rule{height:1px;background:var(--ink);border:0;margin:0}
+  hr.faint{height:1px;background:var(--silver-faint);border:0;margin:0}
+
+  /* header */
+  header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--ink)}
+  .bar{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:15px var(--pad)}
+  .brand{font-family:var(--cap);text-transform:uppercase;font-weight:700;letter-spacing:.1em;font-size:.92rem}
+  .brand b{color:var(--red)}
+  nav{display:flex;gap:1.5rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--silver)}
+  nav a{transition:color .2s} nav a:hover{color:var(--ink)}
+  @media(max-width:720px){ nav{display:none} }
+
+  /* section scaffold */
+  section{padding:clamp(56px,9vh,120px) 0;border-top:1px solid var(--silver-faint)}
+  section:first-of-type{border-top:0}
+  .sechead{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.4rem}
+  .sechead .no{font-family:var(--cap);font-size:.72rem;letter-spacing:.24em;color:var(--red)}
+  .sechead h2{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-weight:500;font-size:clamp(1.5rem,3.2vw,2.3rem);margin:0}
+  .lead{font-size:clamp(1.15rem,1.8vw,1.5rem);line-height:1.5;max-width:60ch}
+  .lead strong{font-weight:600} .lead em{font-style:italic;color:var(--red)}
+  p.body{max-width:64ch;color:var(--ink)}
+  p.body a{border-bottom:1px solid var(--silver);transition:border-color .2s} p.body a:hover{border-color:var(--red)}
+
+  /* HERO */
+  .hero{padding:clamp(40px,6vw,80px) 0 clamp(48px,7vw,96px);border-top:0}
+  .hgrid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,5vw,72px);align-items:center}
+  @media(max-width:860px){ .hgrid{grid-template-columns:1fr;gap:32px} }
+  .kicker{font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--silver);display:inline-flex;align-items:center;gap:.7em}
+  .kicker .sq{width:9px;height:9px;background:var(--red);display:inline-block}
+  h1{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.08em;line-height:.98;font-size:clamp(2.3rem,6.6vw,4.8rem);margin:1.1rem 0 0}
+  .tag{font-size:clamp(1.08rem,1.6vw,1.36rem);line-height:1.55;max-width:46ch;margin:1.3rem 0 0}
+  .tag em{font-style:italic;color:var(--red)}
+  .affil{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--silver);margin:1.2rem 0 0}
+  .actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.9rem}
+  .btn{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;border:1px solid var(--ink);color:var(--ink);background:transparent;padding:.78rem 1.1rem;cursor:pointer;transition:background .12s,color .12s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.pri{background:var(--ink);color:var(--paper)} .btn.pri:hover{background:transparent;color:var(--ink)}
+  .panel{border:1px solid var(--ink);background:var(--card);padding:clamp(14px,1.6vw,20px)}
+  .panel .plabel{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.7rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:var(--silver)}
+  .stage{position:relative;width:100%;aspect-ratio:5/4}
+  .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+  .hint{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;color:var(--silver);margin-top:.75rem;display:flex;align-items:center;gap:.5em}
+  .hint::before{content:"";width:16px;height:1px;background:var(--silver)}
+
+  /* MECHANISM downstream */
+  .down{margin-top:2.4rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint)}
+  @media(max-width:900px){ .down{grid-template-columns:1fr} }
+  .dcell{background:var(--card);padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.6rem}
+  .dcell .sq{width:14px;height:14px;background:var(--ink)}
+  .dcell .who{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}
+  .dcell .eff{font-size:.94rem;color:var(--silver)}
+
+  /* WORK cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint)}
+  .cardw{background:var(--card);padding:clamp(24px,3vw,40px);position:relative}
+  .cardw .cno{font-family:var(--cap);letter-spacing:.18em;font-size:.68rem;color:var(--red)}
+  .cardw h3{font-family:var(--cap);text-transform:uppercase;letter-spacing:.05em;font-weight:500;font-size:1.2rem;margin:.9rem 0 .8rem}
+  .cardw p{color:var(--silver);font-size:.98rem;margin:0;max-width:44ch}
+  .tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+  .tag2{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;color:var(--ink);border:1px solid var(--silver-faint);padding:.5rem .8rem;transition:border-color .2s,color .2s}
+  .tag2:hover{border-color:var(--red)}
+
+  /* PATH */
+  .path{display:flex;flex-direction:column}
+  .step{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:clamp(16px,3vw,48px);padding:1.7rem 0;border-top:1px solid var(--silver-faint);align-items:baseline}
+  .step:first-child{border-top:0}
+  .step .when{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:var(--red)}
+  .step h4{margin:0;font-family:var(--cap);text-transform:uppercase;letter-spacing:.04em;font-weight:500;font-size:1.05rem}
+  .step .org{color:var(--ink);margin:.35rem 0 0;font-size:.98rem}
+  .step .note{color:var(--silver);margin:.3rem 0 0;font-size:.86rem}
+  @media(max-width:560px){ .step{grid-template-columns:1fr;gap:.4rem} }
+
+  /* CONTACT */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint);margin-top:2.2rem}
+  .link{background:var(--card);padding:1.2rem 1.4rem;display:flex;justify-content:space-between;align-items:center;font-family:var(--cap);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;transition:background .18s,color .18s}
+  .link:hover{background:var(--ink);color:var(--paper)}
+  .link .arw{color:var(--silver);transition:transform .2s} .link:hover .arw{transform:translate(3px,-3px);color:var(--paper)}
+  @media(max-width:560px){ .contact{grid-template-columns:1fr} }
+  footer{padding:2.4rem 0 3rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:var(--silver);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--ink)}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none} html{scroll-behavior:auto} }
+</style>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="#top">_<b>bjv</b></a>
+    <nav><a href="#research">_research</a><a href="#work">_work</a><a href="#me">_me</a><a href="#contact">_contact</a></nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hgrid">
+      <div>
+        <span class="kicker"><span class="sq"></span> externalities of human–AI interaction</span>
+        <h1>Bernardo<br>Villegas Moreno</h1>
+        <p class="tag">A single human&ndash;AI interaction doesn&rsquo;t stay put. It <em>spreads</em> — to the colleagues, patients, and decision-makers who were never in the room.</p>
+        <p class="affil">Center for Human-Inspired AI · TRACE Lab · University of Cambridge</p>
+        <div class="actions"><a class="btn pri" href="#research">_read the research →</a><a class="btn" href="#">_cv</a></div>
+      </div>
+      <div class="panel">
+        <div class="plabel"><span>The Sociomatrix</span><span>a walk through the network</span></div>
+        <div class="stage"><canvas id="stage" aria-label="A figure walks a matrix of squares; each square fills as it is reached."></canvas></div>
+        <div class="hint" id="hint">move your cursor — walk, and watch each square fill</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANISM -->
+  <section id="research">
+    <div class="sechead reveal"><span class="no">§ 01</span><h2>The mechanism</h2></div>
+    <p class="lead reveal">Current AI systems are <strong>optimizers with hidden costs</strong>. They enhance the individual while the ripple effects go unmeasured. I make those externalities visible — and locate where to intervene for safer, more beneficial deployment.</p>
+    <div class="down reveal">
+      <div class="dcell"><span class="sq"></span><span class="who">Colleague</span><span class="eff">inherits work they never saw produced</span></div>
+      <div class="dcell"><span class="sq"></span><span class="who">Patient</span><span class="eff">receives a decision shaped by unseen assistance</span></div>
+      <div class="dcell"><span class="sq"></span><span class="who">Decision-maker</span><span class="eff">acts on AI-generated content downstream</span></div>
+      <div class="dcell"><span class="sq"></span><span class="who">Team</span><span class="eff">shared understanding quietly fragments</span></div>
+      <div class="dcell"><span class="sq"></span><span class="who">Institution</span><span class="eff">expertise is gradually displaced</span></div>
+    </div>
+    <p class="body reveal" style="margin-top:2rem">An AI that boosts your productivity while fragmenting your team&rsquo;s shared understanding is a <strong>local optimizer with hidden costs</strong>. I bridge AI, cognitive science, social science, and system design to measure these effects and build systems that augment entire human networks — not just individual users.</p>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="sechead reveal"><span class="no">§ 02</span><h2>Current work</h2></div>
+    <div class="cards reveal">
+      <article class="cardw"><div class="cno">P·01</div><h3>Externalities of human–AI interaction</h3><p>How sustained AI use shapes individual and collective outcomes beyond immediate task performance — confidence calibration, skill development, and decision-making when people routinely collaborate with AI.</p></article>
+      <article class="cardw"><div class="cno">P·02</div><h3>Social evaluation of AI systems</h3><p>Frameworks and metrics for assessing AI from a social-science perspective — beyond purely technical benchmarks, toward real-world impact on users and communities.</p></article>
+    </div>
+    <div class="tags reveal">
+      <span class="tag2">AI</span><span class="tag2">Social evaluation</span><span class="tag2">NLP</span><span class="tag2">Human-centered</span><span class="tag2">Safety</span><span class="tag2">Ethics</span><span class="tag2">Cross-cultural effects</span>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section id="path">
+    <div class="sechead reveal"><span class="no">§ 03</span><h2>The path</h2></div>
+    <div class="path reveal">
+      <div class="step"><div class="when">2025 — present</div><div><h4>PhD, Human-Inspired Artificial Intelligence</h4><p class="org">University of Cambridge · Wolfson College</p><p class="note">Supervisors: Dr. Umang Bhatt · Prof. Anna Korhonen</p></div></div>
+      <div class="step"><div class="when">2021 — 2023</div><div><h4>MSc, Data Science — Distinction</h4><p class="org">University of Edinburgh</p><p class="note">Thesis: a social data-science metric for ML interpretability · with the Alan Turing Institute</p></div></div>
+      <div class="step"><div class="when">2014 — 2019</div><div><h4>BA, Sociology — 10/10</h4><p class="org">Pontifical Catholic University of Ecuador</p><p class="note">President, Student Federation (FEUCE) · General Secretary, FEUPE</p></div></div>
+    </div>
+  </section>
+
+  <!-- ME -->
+  <section id="me">
+    <div class="sechead reveal"><span class="no">§ 04</span><h2>_me</h2></div>
+    <p class="lead reveal">My work sits at the intersection of <strong>social science and technology</strong>, guided by the belief that AI should serve the best interests of humanity.</p>
+    <p class="body reveal" style="margin-top:1.4rem">I am a PhD candidate at the <a href="https://www.chia.cam.ac.uk/" target="_blank" rel="noopener">Center for Human-Inspired Artificial Intelligence</a>, University of Cambridge, and a member of <a href="https://www.wolfson.cam.ac.uk/" target="_blank" rel="noopener">Wolfson College</a>. I hold an MSc in Data Science (Distinction) from the University of Edinburgh, developed with researchers from the Alan Turing Institute, and a BA in Sociology from the Pontifical Catholic University of Ecuador.</p>
+    <p class="body reveal">I am Co-Founder and Editorial Coordinator of <a href="https://revistaacademica-sociales.puce.edu.ec/index.php/theorein" target="_blank" rel="noopener">Theorein. Revista de Ciencias Sociales</a>, a peer-reviewed social science journal.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sechead reveal"><span class="no">§ 05</span><h2>_contact</h2></div>
+    <p class="lead reveal">Open to collaboration on the downstream effects of AI.</p>
+    <div class="contact reveal">
+      <a class="link" href="mailto:bjv30@cam.ac.uk">bjv30@cam.ac.uk<span class="arw">↗</span></a>
+      <a class="link" href="https://scholar.google.com/citations?user=j6a2kQkAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar<span class="arw">↗</span></a>
+      <a class="link" href="https://github.com/bjv01" target="_blank" rel="noopener">GitHub · bjv01<span class="arw">↗</span></a>
+      <a class="link" href="https://www.linkedin.com/in/bernardovillegas96/" target="_blank" rel="noopener">LinkedIn<span class="arw">↗</span></a>
+      <a class="link" href="https://twitter.com/Bernardo__VM" target="_blank" rel="noopener">X · @Bernardo__VM<span class="arw">↗</span></a>
+      <a class="link" href="https://orcid.org/0000-0001-6919-3996" target="_blank" rel="noopener">ORCID · 0000-0001-6919-3996<span class="arw">↗</span></a>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Bernardo Villegas Moreno</span><span>The Sociomatrix</span></footer>
+</main>
+
+<script>
+(function(){
+  // hero canvas: walking figure fills squares
+  var cv=document.getElementById('stage'); if(cv){
+    var ctx=cv.getContext('2d'), root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function C(k){return getComputedStyle(root).getPropertyValue(k).trim();}
+    var COL; function refresh(){COL={ink:C('--ink'),paper:C('--paper'),card:C('--card'),silver:C('--silver'),faint:C('--silver-faint'),red:C('--red')};} refresh();
+    var DPR=Math.min(window.devicePixelRatio||1,2), Wc,Hc,cols,rows,cellW,cellH,mX,mY,sq,cells,people,you;
+    function build(){var r=cv.getBoundingClientRect();Wc=r.width;Hc=r.height;cv.width=Math.round(Wc*DPR);cv.height=Math.round(Hc*DPR);ctx.setTransform(DPR,0,0,DPR,0,0);
+      cols=5;rows=4;mX=Wc*0.13;mY=Hc*0.16;cellW=(Wc-2*mX)/(cols-1);cellH=(Hc-2*mY)/(rows-1);sq=Math.min(cellW,cellH)*0.66;cells=[];
+      for(var rr=0;rr<rows;rr++)for(var c=0;c<cols;c++)cells.push({x:mX+c*cellW,y:mY+rr*cellH});
+      var spec=[[3,0],[1,1],[4,1],[2,2],[4,3],[0,3],[3,3]];people=spec.map(function(s){var cell=cells[s[1]*cols+s[0]];return{x:cell.x,y:cell.y,reached:false,t:0};});
+      var st=cells[1*cols+0];you={x:st.x,y:st.y,tx:st.x,ty:st.y,phase:0,moving:false};}
+    function fig(x,yb,h,color){var s=h/24,hipY=yb-8*s,shoY=yb-15.5*s,hr=3.15*s,hy=yb-19*s;ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(x-4*s,shoY);ctx.quadraticCurveTo(x-4.6*s,shoY,x-4.4*s,shoY+1.4*s);ctx.lineTo(x-2.4*s,hipY);ctx.quadraticCurveTo(x,hipY+1.1*s,x+2.4*s,hipY);ctx.lineTo(x+4.4*s,shoY+1.4*s);ctx.quadraticCurveTo(x+4.6*s,shoY,x+4*s,shoY);ctx.quadraticCurveTo(x,shoY-1.6*s,x-4*s,shoY);ctx.closePath();ctx.fill();ctx.beginPath();ctx.arc(x,hy,hr,0,Math.PI*2);ctx.fill();}
+    function walkFig(x,yb,h,color,ai,phase,moving){var s=h/24;var swing=moving?Math.sin(phase)*0.55:0;ctx.strokeStyle=color;ctx.lineCap='round';ctx.lineWidth=2*s;var hipY=yb-8*s,shoY=yb-15.5*s;[swing,-swing].forEach(function(a){ctx.beginPath();ctx.moveTo(x,hipY);ctx.lineTo(x+Math.sin(a)*8*s,hipY+Math.cos(a)*8*s);ctx.stroke();});ctx.lineWidth=1.5*s;[-swing*0.8,swing*0.8].forEach(function(a){ctx.beginPath();ctx.moveTo(x,shoY);ctx.lineTo(x+Math.sin(a)*6.2*s,shoY+Math.cos(a)*6.2*s);ctx.stroke();});fig(x,yb,h,color);if(ai){var a=3*s;ctx.fillStyle=ai;ctx.fillRect(x-a/2,(yb-19*s)-3.15*s-a*0.55,a,a);}}
+    function draw(){refresh();ctx.clearRect(0,0,Wc,Hc);ctx.fillStyle=COL.card;ctx.fillRect(0,0,Wc,Hc);ctx.strokeStyle=COL.faint;ctx.lineWidth=1;
+      cells.forEach(function(cl){ctx.strokeRect(Math.round(cl.x-sq/2)+0.5,Math.round(cl.y-sq/2)+0.5,Math.round(sq),Math.round(sq));});
+      var fh=sq*0.72;
+      people.forEach(function(p){if(p.reached){ctx.fillStyle=COL.ink;ctx.fillRect(Math.round(p.x-sq/2),Math.round(p.y-sq/2),Math.round(sq),Math.round(sq));fig(p.x,p.y+fh*0.42,fh,COL.paper);if(p.t<1){p.t+=0.06;ctx.strokeStyle='rgba(200,30,30,'+(1-p.t)+')';ctx.lineWidth=2;ctx.strokeRect(Math.round(p.x-sq/2)-2,Math.round(p.y-sq/2)-2,Math.round(sq)+4,Math.round(sq)+4);}}else{fig(p.x,p.y+fh*0.42,fh,COL.silver);}});
+      walkFig(you.x,you.y+fh*0.42,fh,COL.ink,COL.red,you.phase,you.moving);}
+    var SPD=2.1,raf;
+    function tick(){var dx=you.tx-you.x,dy=you.ty-you.y,adx=Math.abs(dx),ady=Math.abs(dy);you.moving=(adx>1||ady>1);if(you.moving){if(adx>1)you.x+=Math.min(SPD,adx)*(dx>0?1:-1);else if(ady>1)you.y+=Math.min(SPD,ady)*(dy>0?1:-1);you.phase+=0.32;}var rad=sq*0.62;people.forEach(function(p){if(!p.reached&&Math.hypot(p.x-you.x,p.y-you.y)<rad){p.reached=true;p.t=0;}});draw();raf=requestAnimationFrame(tick);}
+    function setT(e){var r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;var cc=Math.max(0,Math.min(cols-1,Math.round((x-mX)/cellW))),rr=Math.max(0,Math.min(rows-1,Math.round((y-mY)/cellH)));you.tx=mX+cc*cellW;you.ty=mY+rr*cellH;}
+    cv.addEventListener('pointermove',setT);cv.addEventListener('pointerdown',setT);cv.addEventListener('pointerleave',function(){you.tx=you.x;you.ty=you.y;});
+    window.addEventListener('resize',function(){build();draw();});
+    build(); if(reduce){draw();} else {raf=requestAnimationFrame(tick);}
+  }
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+</script>

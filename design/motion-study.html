@@ -1,0 +1,236 @@
+<!--
+MOTION STUDY — "The human moves; the AI stays with the others"
+World: The Sociomatrix (Vienna lattice, monochrome + one red). 8-bit sprites built from the
+same square cells. A human + AI start together; the human walks the grid reaching other people;
+a copy of the AI imprints on each and stays after the human moves on = the externality.
+-->
+<title>Motion Study</title>
+<meta name="description" content="An 8-bit study for Bernardo Villegas Moreno's identity: a human walks the grid; the AI stays with everyone the work reached.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF;
+    --silver:#7C7F83; --silver-faint:#C9CBCC; --red:#C81E1E;
+    --cap:"Josefin Sans",Futura,"Century Gothic",sans-serif;
+    --serif:"Spectral",Georgia,serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EDEEF0; --paper:#111214; --card:#191B1E; --silver:#8A8E92; --silver-faint:#33363B; --red:#EB5147; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{ --ink:#EDEEF0; --paper:#111214; --card:#191B1E; --silver:#8A8E92; --silver-faint:#33363B; --red:#EB5147; color-scheme:dark; }
+  :root[data-theme="light"]{ --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF; --silver:#7C7F83; --silver-faint:#C9CBCC; --red:#C81E1E; color-scheme:light; }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.6;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:900px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(20px,5vw,48px)}
+  .cap{font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-weight:500}
+  .top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;color:var(--silver);padding-bottom:1rem}
+  .rule{height:1px;background:var(--ink);border:0;margin:0}
+  h1{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.1em;font-size:clamp(1.5rem,4vw,2.4rem);margin:1.4rem 0 .2rem;line-height:1}
+  .lede{max-width:56ch;margin:.4rem 0 0;color:var(--ink);font-size:clamp(1rem,1.4vw,1.14rem)}
+  .lede .r{color:var(--red);font-style:italic}
+
+  .stage{margin:2rem 0 0;border:1px solid var(--ink);background:var(--card);padding:clamp(14px,2.5vw,26px)}
+  canvas{width:100%;height:auto;display:block;image-rendering:pixelated;image-rendering:crisp-edges;background:var(--card)}
+
+  .hud{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1rem;border-top:1px solid var(--silver-faint);padding-top:.9rem}
+  .readout{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--silver)}
+  .readout b{color:var(--ink)} .readout .r{color:var(--red)}
+  .controls{display:flex;gap:.5rem;flex-wrap:wrap}
+  .btn{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;background:var(--card);color:var(--ink);border:1px solid var(--ink);padding:.6rem .85rem;cursor:pointer;transition:background .12s,color .12s}
+  .btn:hover{background:var(--ink);color:var(--card)}
+  .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+  .legend{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.8rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.66rem;color:var(--silver)}
+  .legend span{display:inline-flex;align-items:center;gap:.5em}
+  .swatch{width:12px;height:12px;display:inline-block}
+  .sw-ink{background:var(--ink)} .sw-red{background:var(--red)} .sw-sil{background:var(--silver);outline:1px solid var(--silver-faint)}
+
+  .note{margin-top:2rem;font-size:.95rem;color:var(--ink);max-width:60ch;border-top:1px solid var(--silver-faint);padding-top:1.2rem}
+  .note b{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem}
+  footer{margin-top:2.4rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;color:var(--silver)}
+</style>
+
+<div class="wrap">
+  <div class="top"><span>Identity · Motion Study</span><span>The Sociomatrix</span></div>
+  <hr class="rule">
+  <h1>The human moves.<br>The AI stays with the others.</h1>
+  <p class="lede">A human works with an AI. The human moves on through the network — but a copy of the AI <span class="r">stays with everyone the work reached</span>. Those are the externalities.</p>
+
+  <div class="stage">
+    <canvas id="scene" width="240" height="192" aria-label="8-bit animation: a human figure walks a grid of people; a red AI companion travels with them while ink AI imprints remain on each person reached."></canvas>
+    <div class="hud">
+      <div class="readout">others reached <b id="ro-n">0</b> &nbsp;·&nbsp; AI imprints left <b id="ro-i">0</b> &nbsp;·&nbsp; <span class="r">live AI ▪ 1</span></div>
+      <div class="controls">
+        <button class="btn" id="replay">▸ Replay</button>
+        <button class="btn" id="pause">⏸ Pause</button>
+        <button class="btn" id="pal">◧ Palette</button>
+        <button class="btn" id="theme">◑ Theme</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="swatch sw-ink"></i> Human / AI imprint (stays)</span>
+    <span><i class="swatch sw-red"></i> The live AI (travels)</span>
+    <span><i class="swatch sw-sil"></i> A person not yet reached</span>
+  </div>
+
+  <p class="note"><b>Why it stays on-brand.</b> &nbsp;The sprites are drawn from the same square cells as the Sociomatrix — monochrome ink on gallery paper, one red — so the 8-bit read is the lattice coming alive, not a Game Boy pastiche. Toggle <span class="cap" style="letter-spacing:.08em">Palette</span> to compare with the nostalgic four-green version.</p>
+
+  <footer>Bernardo Villegas Moreno · externalities of human–AI interaction</footer>
+</div>
+
+<script>
+(function(){
+  var cv=document.getElementById('scene'), ctx=cv.getContext('2d');
+  ctx.imageSmoothingEnabled=false;
+  var W=cv.width, H=cv.height;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root=document.documentElement;
+
+  // ---------- palettes ----------
+  var PALS={
+    mono:function(){var s=getComputedStyle(root);return{
+      bg:s.getPropertyValue('--card').trim(), grid:s.getPropertyValue('--silver-faint').trim(),
+      person:s.getPropertyValue('--silver').trim(), ink:s.getPropertyValue('--ink').trim(),
+      ai:s.getPropertyValue('--red').trim(), red:s.getPropertyValue('--red').trim()
+    };},
+    green:function(){return{ bg:'#9bbc0f', grid:'#8bac0f', person:'#306230', ink:'#0f380f', ai:'#c81e1e', red:'#c81e1e' };}
+  };
+  var palName='mono', PAL=PALS.mono();
+  function refreshPal(){ PAL = PALS[palName](); }
+
+  // ---------- sprites (pixel maps) ----------
+  var HUMAN_BODY=[
+    "..###..",
+    "..###..",
+    ".#####.",
+    ".#####.",
+    ".#####.",
+    ".#####.",
+    "..###.."
+  ]; // 7 wide x 7 tall; legs drawn separately (2 frames)
+  var AI=[
+    ".#.#.",
+    ".###.",
+    "#...#",
+    "#.#.#",
+    "#...#",
+    ".###."
+  ]; // 5 wide x 6 tall robot chip
+  var PERSON=[
+    ".###.",
+    ".###.",
+    "#####",
+    "#####",
+    "#####",
+    ".#.#.",
+    ".#.#."
+  ]; // 5 wide x 7 tall standee
+
+  function stamp(map,x,y,color){
+    ctx.fillStyle=color;
+    for(var r=0;r<map.length;r++){ var row=map[r];
+      for(var c=0;c<row.length;c++){ if(row[c]==='#') ctx.fillRect(x+c,y+r,1,1); }
+    }
+  }
+  function drawHuman(x,y,color,frame){
+    stamp(HUMAN_BODY,x,y,color);
+    // legs, 3 tall under body (y+7)
+    ctx.fillStyle=color;
+    if(frame===0){ ctx.fillRect(x+2,y+7,1,3); ctx.fillRect(x+4,y+7,1,3); }
+    else { ctx.fillRect(x+1,y+7,1,3); ctx.fillRect(x+5,y+7,1,3); ctx.fillRect(x+2,y+7,1,1); ctx.fillRect(x+4,y+7,1,1); }
+  }
+
+  // ---------- network nodes ----------
+  var COLS=5, ROWS=4, mX=30, mY=30;
+  var stepX=(W-2*mX)/(COLS-1), stepY=(H-2*mY)/(ROWS-1);
+  var nodes=[];
+  for(var r=0;r<ROWS;r++) for(var c=0;c<COLS;c++) nodes.push({c:c,r:r, x:Math.round(mX+c*stepX), y:Math.round(mY+r*stepY)});
+  function nodeAt(c,r){ return nodes[r*COLS+c]; }
+  // path (col,row) the human walks — a snake through some nodes; first = source
+  var PATHCR=[[0,2],[1,2],[1,1],[2,1],[3,1],[3,2],[4,2],[4,3],[3,3]];
+  var PATH=PATHCR.map(function(p){ return nodeAt(p[0],p[1]); });
+
+  // ---------- state ----------
+  var hx, hy, seg, tx, ty, legFrame, legTick, imprints, reached, phase, holdT;
+  function nodeToHuman(n){ return {x:n.x-3, y:n.y-6}; } // center the 7x10 human on node
+  function reset(){
+    var s=nodeToHuman(PATH[0]); hx=s.x; hy=s.y; seg=0; setTarget(); legFrame=0; legTick=0;
+    imprints=[]; reached=0; phase='walk'; holdT=0;
+    document.getElementById('ro-n').textContent=0;
+    document.getElementById('ro-i').textContent=0;
+  }
+  function setTarget(){ if(seg+1<PATH.length){ var t=nodeToHuman(PATH[seg+1]); tx=t.x; ty=t.y; } }
+
+  function step(){
+    if(phase!=='walk') { if(phase==='hold'){ holdT--; if(holdT<=0){ phase='walk'; reset(); } } return; }
+    // move orthogonally: x first, then y (grid walk)
+    var moved=false, SPD=1;
+    if(hx!==tx){ hx += (tx>hx?SPD:-SPD); moved=true; }
+    else if(hy!==ty){ hy += (ty>hy?SPD:-SPD); moved=true; }
+    if(moved){ legTick++; if(legTick%4===0) legFrame^=1; }
+    if(!moved){
+      // arrived at PATH[seg+1]
+      seg++;
+      if(seg>=1){ var n=PATH[seg]; if(imprints.indexOf(n)<0){ imprints.push(n); reached++; }
+        document.getElementById('ro-n').textContent=reached;
+        document.getElementById('ro-i').textContent=imprints.length;
+      }
+      if(seg+1<PATH.length){ setTarget(); }
+      else { phase='hold'; holdT=90; }
+    }
+  }
+
+  function draw(){
+    ctx.fillStyle=PAL.bg; ctx.fillRect(0,0,W,H);
+    // faint lattice: fine grid
+    ctx.fillStyle=PAL.grid;
+    var g=Math.round(stepX/2);
+    for(var x=mX; x<=W-mX+1; x+=g){ ctx.fillRect(x,mY-2,1, (ROWS-1)*stepY+4); }
+    for(var y=mY; y<=H-mY+1; y+=Math.round(stepY/2)){ ctx.fillRect(mX-2,y,(COLS-1)*stepX+4,1); }
+    // nodes (persons)
+    nodes.forEach(function(n){
+      var visited=imprints.indexOf(n)>=0;
+      var col = visited?PAL.ink:PAL.person;
+      // draw small person centered on node (5x7)
+      stamp(PERSON, n.x-2, n.y-3, col);
+      if(visited){ // AI imprint stays beside them (ink chip)
+        stamp(AI, n.x+3, n.y-3, PAL.ink);
+      }
+    });
+    // human + live AI (skip drawing human over the very source person to avoid overlap when idle)
+    var hFrame = (phase==='walk')?legFrame:0;
+    drawHuman(hx, hy, PAL.ink, hFrame);
+    // live AI travels just to the right of the human's head
+    stamp(AI, hx+7, hy, PAL.red);
+  }
+
+  var playing=true, raf;
+  function loop(){ if(playing){ step(); } draw(); raf=requestAnimationFrame(loop); }
+
+  reset();
+  if(reduce){
+    // static end-state: place all imprints, human at last node
+    imprints=PATH.slice(1); reached=imprints.length;
+    document.getElementById('ro-n').textContent=reached;
+    document.getElementById('ro-i').textContent=imprints.length;
+    var last=nodeToHuman(PATH[PATH.length-1]); hx=last.x; hy=last.y; phase='hold'; holdT=1e9;
+    draw();
+  } else { loop(); }
+
+  // controls
+  document.getElementById('replay').addEventListener('click',function(){ reset(); playing=true; document.getElementById('pause').textContent='⏸ Pause'; });
+  document.getElementById('pause').addEventListener('click',function(){ playing=!playing; this.textContent=playing?'⏸ Pause':'▸ Play'; });
+  document.getElementById('pal').addEventListener('click',function(){ palName=(palName==='mono')?'green':'mono'; refreshPal(); if(!playing||reduce) draw(); });
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme'); if(!cur) cur=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    root.setAttribute('data-theme', cur==='dark'?'light':'dark'); refreshPal(); if(!playing||reduce) draw();
+  });
+})();
+</script>

@@ -1,0 +1,261 @@
+<!--
+SPREAD STUDIES — eight ways to show the externality spreading.
+World: The Sociomatrix (white-only, ink/paper/red, squares, Josefin caps + Spectral).
+Each card is a small looping canvas demo of one concept.
+-->
+<title>Spread Studies</title>
+<meta name="description" content="Eight alternative ways to visualize how one human–AI interaction spreads — mini live demos in the Sociomatrix identity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF; --silver:#9DA1A6; --silver-faint:#D3D5D8; --red:#C81E1E;
+    --cap:"Josefin Sans",Futura,"Century Gothic",sans-serif; --serif:"Spectral",Georgia,serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,48px)}
+  .top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;color:var(--silver);padding-bottom:1rem}
+  hr{height:1px;background:var(--ink);border:0;margin:0}
+  h1{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.1em;font-size:clamp(1.7rem,4.6vw,2.8rem);margin:1.2rem 0 .3rem;line-height:1}
+  h1 .r{color:var(--red)}
+  .lede{max-width:60ch;font-size:1.05rem;color:var(--ink);margin:.3rem 0 0}
+  .lede em{color:var(--red);font-style:italic}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint);margin-top:2.4rem}
+  .cardx{background:var(--card);padding:clamp(16px,1.8vw,22px);display:flex;flex-direction:column;gap:.7rem}
+  .chead{display:flex;align-items:baseline;gap:.6rem}
+  .chead .no{font-family:var(--cap);letter-spacing:.16em;font-size:.66rem;color:var(--silver)}
+  .chead .nm{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-weight:500;font-size:.94rem}
+  .stage{position:relative;width:100%;aspect-ratio:8/5;border:1px solid var(--silver-faint);background:var(--card)}
+  .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .desc{font-size:.9rem;color:var(--silver);line-height:1.45}
+  .desc b{color:var(--ink);font-weight:600}
+  .facet{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;color:var(--ink);display:inline-flex;align-items:center;gap:.5em}
+  .facet .sq{width:8px;height:8px;background:var(--red);display:inline-block}
+
+  footer{margin-top:2.6rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;color:var(--silver);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+  @media(prefers-reduced-motion:reduce){ .stage canvas{opacity:1} }
+</style>
+
+<div class="wrap">
+  <div class="top"><span>The Sociomatrix · Studies</span><span>eight alternatives</span></div>
+  <hr>
+  <h1>Ways the interaction <span class="r">spreads</span></h1>
+  <p class="lede">Eight visual approaches to the same idea — a single human&ndash;AI interaction reaching people who weren&rsquo;t present. Each foregrounds a different <em>facet</em>. All in the same clean identity.</p>
+
+  <div class="grid" id="grid"></div>
+
+  <footer><span>Bernardo Villegas Moreno</span><span>pick one — or a pair to develop</span></footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function C(k){return getComputedStyle(root).getPropertyValue(k).trim();}
+  var COL;
+  function refresh(){COL={ink:C('--ink'),paper:C('--paper'),card:C('--card'),silver:C('--silver'),faint:C('--silver-faint'),red:C('--red')};}
+  refresh();
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function hexa(hex,a){hex=hex.replace('#','');if(hex.length===3)hex=hex.split('').map(function(x){return x+x;}).join('');return'rgba('+parseInt(hex.slice(0,2),16)+','+parseInt(hex.slice(2,4),16)+','+parseInt(hex.slice(4,6),16)+','+a+')';}
+
+  // ---- small drawing helpers (operate on a ctx with logical W,H) ----
+  function openSq(ctx,x,y,s){ctx.strokeStyle=COL.faint;ctx.lineWidth=1;ctx.strokeRect(Math.round(x-s/2)+0.5,Math.round(y-s/2)+0.5,Math.round(s),Math.round(s));}
+  function fillSq(ctx,x,y,s,col){ctx.fillStyle=col;ctx.fillRect(Math.round(x-s/2),Math.round(y-s/2),Math.round(s),Math.round(s));}
+  function fig(ctx,x,yb,h,color,legs){var s=h/16;var hipY=yb-6*s,shoY=yb-11*s,hr=2.2*s,hy=yb-13.4*s;
+    ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(x-2.8*s,shoY);ctx.quadraticCurveTo(x-3.2*s,shoY,x-3*s,shoY+1*s);ctx.lineTo(x-1.7*s,hipY);ctx.quadraticCurveTo(x,hipY+0.8*s,x+1.7*s,hipY);ctx.lineTo(x+3*s,shoY+1*s);ctx.quadraticCurveTo(x+3.2*s,shoY,x+2.8*s,shoY);ctx.quadraticCurveTo(x,shoY-1.1*s,x-2.8*s,shoY);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.arc(x,hy,hr,0,Math.PI*2);ctx.fill();
+    if(legs){ctx.strokeStyle=color;ctx.lineWidth=1.4*s;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x-1*s,hipY);ctx.lineTo(x-1.4*s,yb);ctx.moveTo(x+1*s,hipY);ctx.lineTo(x+1.4*s,yb);ctx.stroke();}
+  }
+  function aiMark(ctx,x,yTop,s,col){ctx.fillStyle=col;ctx.fillRect(x-s/2,yTop-s,s,s);}
+
+  // ================= DEMOS =================
+  var demos=[
+   {no:'01',nm:'Square ripple',facet:'reach + momentum',
+    desc:'Concentric <b>rings of squares</b> ink outward from the source. Propagation you can watch move.',
+    init:function(d){d.cols=8;d.rows=5;},
+    draw:function(ctx,W,H,f,d){
+      var mX=W*0.1,mY=H*0.14,sw=(W-2*mX)/(d.cols-1),sh=(H-2*mY)/(d.rows-1),s=Math.min(sw,sh)*0.62;
+      var sc=Math.floor(d.cols/2),sr=Math.floor(d.rows/2);
+      var period=150,t=f%period,ring=Math.floor(t/11),maxr=Math.max(sc,d.cols-1-sc,sr,d.rows-1-sr);
+      for(var r=0;r<d.rows;r++)for(var c=0;c<d.cols;c++){var x=mX+c*sw,y=mY+r*sh;openSq(ctx,x,y,s);
+        var dist=Math.max(Math.abs(c-sc),Math.abs(r-sr));
+        if(c===sc&&r===sr){fillSq(ctx,x,y,s,COL.red);}
+        else if(dist<=ring && t<period-24){fillSq(ctx,x,y,s,COL.ink);}
+      }
+    }},
+
+   {no:'02',nm:'Isotype tally',facet:'magnitude, no numbers',
+    desc:'Neurath&rsquo;s method: rows of figures, a <b>proportion fills</b>. Quantity is the filled figures — no digits.',
+    init:function(d){d.cols=8;d.rows=5;d.n=d.cols*d.rows;d.order=[];for(var i=1;i<d.n;i++)d.order.push(i);d.order.sort(function(){return Math.random()-0.5;});},
+    draw:function(ctx,W,H,f,d){
+      var mX=W*0.09,mY=H*0.16,sw=(W-2*mX)/(d.cols-1),sh=(H-2*mY)/(d.rows-1),fh=sh*0.72;
+      var period=200,t=f%period; var frac=Math.min(1,t/(period*0.6)); var lit=Math.floor(frac*(d.n*0.45));
+      if(t>period-26)lit=0;
+      for(var i=0;i<d.n;i++){var c=i%d.cols,r=Math.floor(i/d.cols),x=mX+c*sw,y=mY+r*sh+fh*0.5;
+        if(i===0){fig(ctx,x,y,fh,COL.ink,false);aiMark(ctx,x,y-fh*0.86,3,COL.red);}
+        else{var on=d.order.indexOf(i)<lit;fig(ctx,x,y,fh,on?COL.ink:COL.silver,false);}
+      }
+    }},
+
+   {no:'03',nm:'Delayed fill',facet:'invisibility + delay',
+    desc:'You interact and <b>move on</b>; the squares fill seconds later — after you&rsquo;ve left the room.',
+    init:function(d){d.cells=7;},
+    draw:function(ctx,W,H,f,d){
+      var mX=W*0.1,y=H*0.42,sw=(W-2*mX)/(d.cells-1),s=Math.min(sw,H*0.4)*0.6;
+      var period=210,t=f%period; var walkT=Math.min(d.cells-1,(t/12)); var wx=mX+walkT*sw;
+      for(var i=0;i<d.cells;i++){var x=mX+i*sw;openSq(ctx,x,y,s);
+        var passAt=i*12, fillAt=passAt+48; // delay after passing
+        if(t>=fillAt && t<period-24 && i>0){fillSq(ctx,x,y,s,COL.ink);fig(ctx,x,y+s*0.36,s*0.66,COL.paper,false);}
+        else if(i>0){fig(ctx,x,y+s*0.36,s*0.66,COL.silver,false);}
+      }
+      // the walker (you)
+      if(t< d.cells*12+6){fig(ctx,wx,y+s*0.36,s*0.72,COL.ink,true);aiMark(ctx,wx,y-s*0.5,3,COL.red);}
+    }},
+
+   {no:'04',nm:'Present vs absent',facet:'the unmeasured',
+    desc:'The interaction happens among the few <b>in the room</b> — but the <b>faint, absent</b> squares are the ones that fill.',
+    init:function(d){},
+    draw:function(ctx,W,H,f,d){
+      var period=190,t=f%period;
+      // in-room cluster (left), framed
+      var rx=W*0.22, ry=H*0.5, rs=Math.min(W,H)*0.13;
+      ctx.strokeStyle=COL.ink;ctx.lineWidth=1;ctx.strokeRect(rx-rs*1.4,ry-rs*1.1,rs*2.8,rs*2.2);
+      var inroom=[[rx-rs*0.6,ry-rs*0.4],[rx+rs*0.5,ry-rs*0.3],[rx,ry+rs*0.5]];
+      inroom.forEach(function(p){fig(ctx,p[0],p[1]+rs*0.3,rs*0.9,COL.ink,false);});
+      // pulse in room
+      if(t<40){ctx.strokeStyle=hexa(COL.red,Math.max(0,1-t/40));ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(rx,ry,rs*0.6+t*1.4,0,Math.PI*2);ctx.stroke();}
+      // absent field (right), faint squares filling
+      var cols=4,rows=4,mX=W*0.55,mY=H*0.16,sw=(W-mX-W*0.06)/(cols-1),sh=(H-2*mY)/(rows-1),s=Math.min(sw,sh)*0.5;
+      var lit=Math.floor(Math.max(0,(t-40))/9);
+      var k=0;for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var x=mX+c*sw,y=mY+r*sh;
+        ctx.globalAlpha=0.5;openSq(ctx,x,y,s);ctx.globalAlpha=1;
+        if(k<lit && t<period-24)fillSq(ctx,x,y,s,COL.ink);k++;}
+    }},
+
+   {no:'05',nm:'Contagion',facet:'behaves like an epidemic',
+    desc:'Social epidemiology: state spreads neighbour to neighbour. A citable framing (with a small S-curve).',
+    init:function(d){d.cols=9;d.rows=6;d.reset=function(W,H){d.mX=W*0.08;d.mY=H*0.1;d.sw=(W-2*d.mX)/(d.cols-1);d.sh=(H*0.78-2*d.mY)/(d.rows-1);d.st=[];for(var i=0;i<d.cols*d.rows;i++)d.st.push(0);d.src=Math.floor(d.rows/2)*d.cols+Math.floor(d.cols/2);d.st[d.src]=2;d.hist=[];};d.last=-1;},
+    draw:function(ctx,W,H,f,d){
+      var period=210,t=f%period; if(t<d.last||d.st===undefined)d.reset(W,H); d.last=t;
+      if(t>0 && t%7===0 && t<period-40){ // spread step
+        var add=[];for(var i=0;i<d.st.length;i++){if(d.st[i]>=1){var c=i%d.cols,r=Math.floor(i/d.cols);[[1,0],[-1,0],[0,1],[0,-1]].forEach(function(dd){var nc=c+dd[0],nr=r+dd[1];if(nc>=0&&nc<d.cols&&nr>=0&&nr<d.rows){var ni=nr*d.cols+nc;if(d.st[ni]===0&&Math.random()<0.5)add.push(ni);}});}}
+        add.forEach(function(i){d.st[i]=1;});
+      }
+      var cnt=0;for(var i=0;i<d.st.length;i++){var c=i%d.cols,r=Math.floor(i/d.cols),x=d.mX+c*d.sw,y=d.mY+r*d.sh,rad=Math.min(d.sw,d.sh)*0.16;
+        ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);
+        if(d.st[i]===2){ctx.fillStyle=COL.red;cnt++;}else if(d.st[i]===1){ctx.fillStyle=COL.ink;cnt++;}else{ctx.fillStyle=COL.silver;}
+        ctx.fill();}
+      // s-curve
+      if(t%7===0)d.hist&&d.hist.push(cnt/d.st.length);
+      var by=H*0.9,bx0=d.mX,bw=(W-2*d.mX);ctx.strokeStyle=COL.faint;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(bx0,by);ctx.lineTo(bx0+bw,by);ctx.stroke();
+      if(d.hist){ctx.strokeStyle=COL.red;ctx.lineWidth=1.4;ctx.beginPath();d.hist.forEach(function(v,k){var x=bx0+bw*(k/26),y=by-v*H*0.16;k?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();}
+    }},
+
+   {no:'06',nm:'Ink on paper',facet:'irreversibility',
+    desc:'A drop of printer&rsquo;s ink diffuses through the lattice. Monochrome, tactile — ink doesn&rsquo;t un-spread.',
+    init:function(d){d.cols=10;d.rows=7;d.noise=[];for(var i=0;i<200;i++)d.noise.push(Math.random());},
+    draw:function(ctx,W,H,f,d){
+      var mX=W*0.06,mY=H*0.1,sw=(W-2*mX)/(d.cols-1),sh=(H-2*mY)/(d.rows-1),s=Math.min(sw,sh)*0.82;
+      var sc=Math.floor(d.cols*0.5),sr=Math.floor(d.rows*0.5);
+      var period=200,t=f%period,radius=(t/period)*Math.max(d.cols,d.rows)*1.1;
+      for(var r=0;r<d.rows;r++)for(var c=0;c<d.cols;c++){var x=mX+c*sw,y=mY+r*sh;
+        var dist=Math.hypot(c-sc,r-sr)+ (d.noise[(r*d.cols+c)%d.noise.length]-0.5)*0.9;
+        var a=Math.max(0,Math.min(1,(radius-dist)));
+        if(t>period-26)a*=Math.max(0,(period-t)/26);
+        if(a>0.02){ctx.fillStyle=hexa(COL.ink,a);ctx.fillRect(Math.round(x-s/2),Math.round(y-s/2),Math.round(s),Math.round(s));}
+        else{openSq(ctx,x,y,s);}
+      }
+      fillSq(ctx,mX+sc*sw,mY+sr*sh,s*0.5,COL.red);
+    }},
+
+   {no:'07',nm:'The ledger',facet:'second-order costs',
+    desc:'Left: the clean interaction. Right: downstream consequences <b>accumulate</b> as annotations. Scholarship, not spectacle.',
+    init:function(d){d.rows=['colleague inherits the work','patient receives a shaped decision','decision-maker acts downstream','the team’s understanding fragments','expertise is displaced'];},
+    draw:function(ctx,W,H,f,d){
+      var period=230,t=f%period;
+      // left interaction block
+      var lx=W*0.16,ly=H*0.5,ls=Math.min(W,H)*0.16;
+      ctx.strokeStyle=COL.ink;ctx.lineWidth=1;ctx.strokeRect(lx-ls,ly-ls,ls*2,ls*2);
+      fig(ctx,lx-ls*0.4,ly+ls*0.4,ls*1.1,COL.ink,false); fillSq(ctx,lx+ls*0.4,ly-ls*0.3,ls*0.5,COL.red);
+      // arrow
+      ctx.strokeStyle=COL.faint;ctx.beginPath();ctx.moveTo(lx+ls*1.2,ly);ctx.lineTo(W*0.42,ly);ctx.stroke();
+      // right ledger rows appearing
+      var rx=W*0.46,ry0=H*0.2,rh=(H*0.62)/d.rows.length; var shown=Math.min(d.rows.length,Math.floor(t/34));
+      if(t>period-24)shown=d.rows.length;
+      for(var i=0;i<shown;i++){var y=ry0+i*rh;
+        fillSq(ctx,rx+4,y,6,COL.ink);
+        ctx.strokeStyle=COL.faint;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(rx+14,y+rh*0.32);ctx.lineTo(W*0.93,y+rh*0.32);ctx.stroke();
+        ctx.fillStyle=COL.silver;ctx.font=(Math.max(8,H*0.05))+'px Spectral, serif';ctx.textBaseline='alphabetic';ctx.fillText(d.rows[i], rx+16, y+rh*0.24);
+      }
+    }},
+
+   {no:'08',nm:'Distortion chain',facet:'trust altered, not copied',
+    desc:'The work passes hand to hand and <b>changes</b> each time — it isn&rsquo;t a neutral copy. Shows the effect isn&rsquo;t harmless.',
+    init:function(d){d.n=5;},
+    draw:function(ctx,W,H,f,d){
+      var mX=W*0.12,y=H*0.5,sw=(W-2*mX)/(d.n-1),s=Math.min(sw,H*0.5)*0.5;
+      var period=170,t=f%period,head=Math.min(d.n-1,t/26);
+      for(var i=0;i<d.n;i++){var x=mX+i*sw;
+        // connector dots (not lines-heavy): small chevron
+        if(i<d.n-1){ctx.fillStyle=COL.faint;ctx.fillText&&0;ctx.beginPath();var mxp=x+sw*0.5;ctx.moveTo(mxp-3,y-3);ctx.lineTo(mxp+3,y);ctx.lineTo(mxp-3,y+3);ctx.strokeStyle=COL.faint;ctx.lineWidth=1;ctx.stroke();}
+        var arrived = head>=i;
+        var deg = i/(d.n-1); // 0 clean -> 1 distorted
+        ctx.save();ctx.translate(x,y);ctx.rotate((arrived?deg:0)*0.5*(i%2?1:-1));
+        var col = i===0?COL.red:(arrived?COL.ink:COL.silver);
+        // a square glyph that degrades: offset sub-squares as it distorts
+        ctx.strokeStyle=col;ctx.fillStyle=col;
+        if(!arrived){openSq(ctx,0,0,s);}
+        else{
+          var jit=deg*s*0.5;
+          ctx.fillRect(-s/2,-s/2,s*(1-deg*0.4),s*(1-deg*0.4));
+          if(deg>0.3){ctx.globalAlpha=0.5;ctx.fillRect(-s/2+jit*(d.noise?1:1),-s/2- jit*0.5,s*0.5,s*0.5);ctx.globalAlpha=1;}
+        }
+        ctx.restore();
+      }
+    }},
+  ];
+
+  // ---- build cards ----
+  var gridEl=document.getElementById('grid'); var insts=[];
+  demos.forEach(function(d){
+    var card=document.createElement('div');card.className='cardx';
+    card.innerHTML='<div class="chead"><span class="no">'+d.no+'</span><span class="nm">'+d.nm+'</span></div>'+
+      '<div class="stage"><canvas></canvas></div>'+
+      '<div class="desc">'+d.desc+'</div>'+
+      '<div class="facet"><span class="sq"></span>'+d.facet+'</div>';
+    gridEl.appendChild(card);
+    var cv=card.querySelector('canvas');
+    insts.push({d:d,cv:cv,ctx:cv.getContext('2d'),W:0,H:0});
+  });
+  // closing card fills the grid
+  var closer=document.createElement('div');closer.className='cardx';closer.style.justifyContent='center';
+  closer.innerHTML='<div class="chead"><span class="no">09</span><span class="nm">Your call</span></div>'+
+    '<div class="desc" style="font-size:1rem;color:var(--ink)">Pick one to become the hero — or a <b>pair</b> to develop side by side. If you&rsquo;re unsure, tell me which <b>facet</b> matters most and I&rsquo;ll choose.</div>'+
+    '<div class="facet"><span class="sq"></span>reach · invisibility · delay · distortion · displacement</div>';
+  gridEl.appendChild(closer);
+
+  function size(){
+    insts.forEach(function(it){
+      var r=it.cv.getBoundingClientRect(); it.W=r.width; it.H=r.height;
+      it.cv.width=Math.round(r.width*DPR); it.cv.height=Math.round(r.height*DPR); it.ctx.setTransform(DPR,0,0,DPR,0,0);
+      if(it.d.init)it.d.init(it.d); if(it.d.reset)it.d.reset(it.W,it.H);
+    });
+  }
+  var f=0;
+  function loop(){
+    refresh();
+    insts.forEach(function(it){ it.ctx.clearRect(0,0,it.W,it.H); it.ctx.fillStyle=COL.card; it.ctx.fillRect(0,0,it.W,it.H); it.d.draw(it.ctx,it.W,it.H,f,it.d); });
+    f+= reduce?0:1;
+    raf=requestAnimationFrame(loop);
+  }
+  var raf;
+  window.addEventListener('resize',function(){ size(); });
+  size();
+  if(reduce){ f=90; loop(); } else { loop(); }
+})();
+</script>

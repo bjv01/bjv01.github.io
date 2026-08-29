@@ -1,0 +1,182 @@
+<!--
+HOMEPAGE HERO — The Sociomatrix (walking figure, fills SQUARES not lines)
+White-only. A lattice of open squares (the sociomatrix). Sparse people stand in some squares.
+YOU are a refined Isotype-style figure (ink) with a red AI. On hover you WALK toward the cursor;
+when you meet a person their SQUARE FILLS solid ink (the effect landed) and their figure reverses
+to paper inside it. No connecting lines, no numbers.
+-->
+<title>Villegas Moreno</title>
+<meta name="description" content="Homepage hero for Bernardo Villegas Moreno — a figure walks a matrix of people; each square fills as the AI reaches it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF; --silver:#9DA1A6; --silver-faint:#D3D5D8; --red:#C81E1E;
+    --cap:"Josefin Sans",Futura,"Century Gothic",sans-serif; --serif:"Spectral",Georgia,serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;min-height:100svh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+
+  header{display:flex;justify-content:space-between;align-items:center;padding:18px clamp(20px,5vw,56px);border-bottom:1px solid var(--ink)}
+  .brand{font-family:var(--cap);text-transform:uppercase;font-weight:700;letter-spacing:.1em;font-size:.9rem}
+  .brand b{color:var(--red)}
+  nav{display:flex;gap:1.6rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--silver)}
+  nav a{transition:color .2s} nav a:hover{color:var(--ink)}
+  @media(max-width:720px){ nav{display:none} }
+
+  .hero{flex:1;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,5vw,72px);align-items:center;
+    max-width:1240px;width:100%;margin:0 auto;padding:clamp(36px,6vw,72px) clamp(20px,5vw,56px)}
+  @media(max-width:860px){ .hero{grid-template-columns:1fr;gap:32px} }
+
+  .kicker{font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--silver);display:inline-flex;align-items:center;gap:.7em}
+  .kicker .sq{width:9px;height:9px;background:var(--red);display:inline-block}
+  h1{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.09em;line-height:.98;font-size:clamp(2.2rem,6.4vw,4.6rem);margin:1.1rem 0 0}
+  .tag{font-family:var(--serif);font-size:clamp(1.06rem,1.6vw,1.34rem);line-height:1.55;color:var(--ink);max-width:46ch;margin:1.3rem 0 0}
+  .tag em{font-style:italic;color:var(--red)}
+  .affil{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--silver);margin:1.2rem 0 0}
+  .actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.9rem}
+  .btn{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;border:1px solid var(--ink);color:var(--ink);background:transparent;padding:.78rem 1.1rem;cursor:pointer;transition:background .12s,color .12s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.pri{background:var(--ink);color:var(--paper)} .btn.pri:hover{background:transparent;color:var(--ink)}
+
+  .panel{border:1px solid var(--ink);background:var(--card);padding:clamp(14px,1.6vw,20px);position:relative}
+  .panel .plabel{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.7rem;
+    font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;color:var(--silver)}
+  .stage{position:relative;width:100%;aspect-ratio:5/4}
+  .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+  .hint{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;color:var(--silver);margin-top:.8rem;display:flex;align-items:center;gap:.5em}
+  .hint::before{content:"";width:16px;height:1px;background:var(--silver)}
+</style>
+
+<header>
+  <span class="brand">_<b>bjv</b></span>
+  <nav><a href="#">_me</a><a href="#">_research</a><a href="#">_work</a><a href="#">_contact</a></nav>
+</header>
+
+<main class="hero">
+  <div class="col-text">
+    <span class="kicker"><span class="sq"></span> externalities of human–AI interaction</span>
+    <h1>Bernardo<br>Villegas Moreno</h1>
+    <p class="tag">A single human&ndash;AI interaction doesn&rsquo;t stay put. It <em>spreads</em> — to the colleagues, patients, and decision-makers who were never in the room. I measure what happens to the network after the interaction.</p>
+    <p class="affil">Center for Human-Inspired AI · TRACE Lab · University of Cambridge</p>
+    <div class="actions">
+      <a class="btn pri" href="#">_read the research →</a>
+      <a class="btn" href="#">_cv</a>
+    </div>
+  </div>
+
+  <div class="col-grid">
+    <div class="panel">
+      <div class="plabel"><span>The Sociomatrix</span><span>a walk through the network</span></div>
+      <div class="stage"><canvas id="stage" aria-label="A figure walks a matrix of squares; whenever it meets a person, that person's square fills solid."></canvas></div>
+      <div class="hint" id="hint">move your cursor — walk, and watch each square fill as the AI reaches it</div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var cv=document.getElementById('stage'), ctx=cv.getContext('2d');
+  var root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function C(k){ return getComputedStyle(root).getPropertyValue(k).trim(); }
+  var COL={};
+  function refresh(){ COL={ink:C('--ink'),paper:C('--paper'),card:C('--card'),silver:C('--silver'),faint:C('--silver-faint'),red:C('--red')}; }
+  refresh();
+
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  var Wc,Hc, cols,rows, cellW,cellH, mX,mY, sq, cells=[], people=[], you;
+
+  function build(){
+    var rect=cv.getBoundingClientRect(); Wc=rect.width; Hc=rect.height;
+    cv.width=Math.round(Wc*DPR); cv.height=Math.round(Hc*DPR); ctx.setTransform(DPR,0,0,DPR,0,0);
+    cols=5; rows=4;
+    mX=Wc*0.13; mY=Hc*0.16; cellW=(Wc-2*mX)/(cols-1); cellH=(Hc-2*mY)/(rows-1);
+    sq=Math.min(cellW,cellH)*0.66;
+    cells=[];
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){ cells.push({c:c,r:r,x:mX+c*cellW,y:mY+r*cellH}); }
+    // sparse people occupy some cells
+    var spec=[[3,0],[1,1],[4,1],[2,2],[4,3],[0,3],[3,3]];
+    people=spec.map(function(s){ var cell=cells[s[1]*cols+s[0]]; return {x:cell.x,y:cell.y,reached:false,t:0}; });
+    var start=cells[1*cols+0];
+    you={x:start.x,y:start.y,tx:start.x,ty:start.y,phase:0,moving:false};
+  }
+
+  // refined Isotype figure
+  function figure(x,y,h,color,opts){
+    opts=opts||{};
+    var s=h/24, phase=opts.phase||0, moving=opts.moving;
+    var swing=moving?Math.sin(phase)*0.55:0;
+    var bob=moving?Math.abs(Math.sin(phase))*(0.8*s):(opts.breathe||0);
+    var fy=y-bob, fx=x, hipY=fy-8*s, shoY=fy-15.5*s, headR=3.15*s, headY=fy-19*s;
+    ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.strokeStyle=color; ctx.lineWidth=2.0*s;
+    limb(fx,hipY,8*s,swing); limb(fx,hipY,8*s,-swing);
+    ctx.lineWidth=1.5*s; limb(fx,shoY,6.2*s,-swing*0.8); limb(fx,shoY,6.2*s,swing*0.8);
+    ctx.fillStyle=color; ctx.beginPath();
+    ctx.moveTo(fx-4*s,shoY);
+    ctx.quadraticCurveTo(fx-4.6*s,shoY,fx-4.4*s,shoY+1.4*s);
+    ctx.lineTo(fx-2.4*s,hipY); ctx.quadraticCurveTo(fx,hipY+1.1*s,fx+2.4*s,hipY);
+    ctx.lineTo(fx+4.4*s,shoY+1.4*s); ctx.quadraticCurveTo(fx+4.6*s,shoY,fx+4*s,shoY);
+    ctx.quadraticCurveTo(fx,shoY-1.6*s,fx-4*s,shoY); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.arc(fx,headY,headR,0,Math.PI*2); ctx.fill();
+    if(opts.ai){ var a=3.0*s; ctx.fillStyle=opts.ai; ctx.fillRect(fx-a/2, headY-headR-a*0.55, a, a); }
+  }
+  function limb(jx,jy,len,angle){ var ex=jx+Math.sin(angle)*len, ey=jy+Math.cos(angle)*len; ctx.beginPath(); ctx.moveTo(jx,jy); ctx.lineTo(ex,ey); ctx.stroke(); }
+  function sqrect(cx,cy){ return [cx-sq/2, cy-sq/2, sq, sq]; }
+
+  function draw(){
+    refresh();
+    ctx.clearRect(0,0,Wc,Hc); ctx.fillStyle=COL.card; ctx.fillRect(0,0,Wc,Hc);
+    // the sociomatrix: open squares for every cell
+    ctx.strokeStyle=COL.faint; ctx.lineWidth=1;
+    cells.forEach(function(cell){ var r=sqrect(cell.x,cell.y); ctx.strokeRect(Math.round(r[0])+0.5,Math.round(r[1])+0.5,Math.round(r[2]),Math.round(r[3])); });
+    var fh=sq*0.72;
+    // people
+    people.forEach(function(p){
+      var r=sqrect(p.x,p.y);
+      if(p.reached){
+        ctx.fillStyle=COL.ink; ctx.fillRect(Math.round(r[0]),Math.round(r[1]),Math.round(r[2]),Math.round(r[3])); // square fills
+        figure(p.x, p.y+fh*0.42, fh, COL.paper, {ai:COL.paper}); // reversed person inside
+        if(p.t<1){ p.t+=0.06; ctx.strokeStyle='rgba('+hexrgb(COL.red)+','+(1-p.t)+')'; ctx.lineWidth=2;
+          ctx.strokeRect(Math.round(r[0])-2,Math.round(r[1])-2,Math.round(r[2])+4,Math.round(r[3])+4); }
+      } else {
+        figure(p.x, p.y+fh*0.42, fh, COL.silver, {breathe:Math.sin(Date.now()/900+p.x)*0.3});
+      }
+    });
+    // you: ink figure + red AI (walks; not boxed)
+    figure(you.x, you.y+fh*0.42, fh, COL.ink, {ai:COL.red, phase:you.phase, moving:you.moving, breathe: you.moving?0:Math.sin(Date.now()/700)*0.5});
+  }
+  function hexrgb(hex){hex=hex.replace('#','');if(hex.length===3)hex=hex.split('').map(function(x){return x+x;}).join('');return parseInt(hex.slice(0,2),16)+','+parseInt(hex.slice(2,4),16)+','+parseInt(hex.slice(4,6),16);}
+
+  var SPD=2.1, raf;
+  function tick(){
+    var dx=you.tx-you.x, dy=you.ty-you.y, adx=Math.abs(dx), ady=Math.abs(dy);
+    you.moving=(adx>1||ady>1);
+    if(you.moving){
+      if(adx>1) you.x+=Math.min(SPD,adx)*(dx>0?1:-1);
+      else if(ady>1) you.y+=Math.min(SPD,ady)*(dy>0?1:-1);
+      you.phase+=0.32;
+    }
+    var rad=sq*0.62;
+    people.forEach(function(p){ if(!p.reached && Math.hypot(p.x-you.x,p.y-you.y)<rad){ p.reached=true; p.t=0; } });
+    draw(); raf=requestAnimationFrame(tick);
+  }
+
+  function setTarget(e){
+    var rect=cv.getBoundingClientRect(); var x=e.clientX-rect.left, y=e.clientY-rect.top;
+    var cc=Math.max(0,Math.min(cols-1,Math.round((x-mX)/cellW))), rr=Math.max(0,Math.min(rows-1,Math.round((y-mY)/cellH)));
+    you.tx=mX+cc*cellW; you.ty=mY+rr*cellH;
+  }
+  cv.addEventListener('pointermove',setTarget);
+  cv.addEventListener('pointerdown',setTarget);
+  cv.addEventListener('pointerleave',function(){ you.tx=you.x; you.ty=you.y; });
+  window.addEventListener('resize',function(){ build(); draw(); });
+
+  build();
+  if(reduce){ draw(); } else { raf=requestAnimationFrame(tick); }
+})();
+</script>

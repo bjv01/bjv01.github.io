@@ -1,0 +1,467 @@
+<!--
+DIRECTION CONTRACT — The Sociomatrix (identity system)
+THESIS: The Wiener Werkstätte square lattice IS Moreno's sociomatrix. Open square = a person
+  not yet reached; filled square = a social effect that landed. The subject's thesis (downstream
+  externalities of human–AI interaction) becomes the identity's fundamental unit. Refuses both
+  academic defaults: cream+serif AND the dark-neon techy look.
+OWN-WORLD: Gallery precision. Lacquer ink on cool gallery paper (not cream). Strict square
+  lattice, 1px ruled hairlines, zero radius, no shadows. Letterspaced geometric caps (Josefin
+  Sans) over a reading serif (Spectral). ONE sociometric red, once per view.
+STORY: A peer sees an exacting, original identity; understands the network/ripple thesis from
+  the mark and the live matrix; reads the system (mark, color, type, grid, voice); sees it
+  applied to site, slide, CV, avatar.
+FIRST VIEWPORT: Masthead — label, full-name wordmark in letterspaced caps, north-star line,
+  the matrix-M mark to the right in its square. Ruled seams above and below.
+FORM: Vienna Secession / Wiener Werkstätte lattice (user-chosen challenger), fused with
+  sociometry. Committed dual-theme monochrome. Seed key 36951d95 · assigned world was the
+  scholarly imprint; user chose the fused Vienna-Grid alternate.
+-->
+<title>The Sociomatrix</title>
+<meta name="description" content="Brand identity system for Bernardo Villegas Moreno — a Vienna Secession square lattice read as a social matrix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF;
+    --silver:#7C7F83; --silver-faint:#C9CBCC; --red:#C81E1E;
+    --cap:"Josefin Sans",Futura,"Century Gothic",sans-serif;
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+    --cell:88px; --u:8px;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EDEEF0; --paper:#111214; --card:#191B1E;
+      --silver:#8A8E92; --silver-faint:#33363B; --red:#EB5147;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EDEEF0; --paper:#111214; --card:#191B1E;
+    --silver:#8A8E92; --silver-faint:#33363B; --red:#EB5147;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--ink);color:var(--paper)}
+  .cap{font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-weight:500}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+  .rule{height:1px;background:var(--ink);border:0;margin:0}
+  .rule.faint{background:var(--silver-faint)}
+  a{color:inherit;text-decoration:none}
+
+  /* theme toggle */
+  .toggle{position:fixed;top:14px;right:14px;z-index:50;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;
+    background:var(--paper);color:var(--ink);border:1px solid var(--ink);padding:.5rem .7rem;cursor:pointer}
+  .toggle:hover{background:var(--ink);color:var(--paper)}
+
+  /* section frame */
+  section{padding:clamp(48px,7vw,96px) 0}
+  .seclabel{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.4rem}
+  .seclabel .no{font-family:var(--cap);font-size:.72rem;letter-spacing:.24em;color:var(--silver)}
+  .seclabel h2{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-weight:500;font-size:clamp(1.2rem,2.4vw,1.7rem);margin:0}
+
+  /* MASTHEAD */
+  .masthead{padding-top:clamp(52px,8vw,104px)}
+  .mh-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;color:var(--silver);padding-bottom:1rem}
+  .mh-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,5vw,64px);align-items:center;padding:clamp(28px,4vw,52px) 0}
+  .wordmark{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.14em;line-height:.98;font-size:clamp(2.1rem,6.6vw,4.6rem);margin:0}
+  .northstar{font-family:var(--serif);font-style:italic;color:var(--silver);margin:1.2rem 0 0;font-size:clamp(1.05rem,1.6vw,1.35rem);max-width:44ch}
+  .mh-mark{width:clamp(120px,18vw,190px);height:clamp(120px,18vw,190px)}
+  @media(max-width:680px){ .mh-grid{grid-template-columns:1fr;gap:24px} .mh-mark{width:120px;height:120px} }
+
+  /* MARK section */
+  .mark-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint)}
+  .mark-cell{background:var(--card);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+  .mark-cell .box{width:150px;height:150px}
+  .mark-cell .cname{font-family:var(--cap);text-transform:uppercase;letter-spacing:.2em;font-size:.7rem;color:var(--silver)}
+  .mark-cell p{font-size:.9rem;color:var(--ink);margin:0}
+  .mark-cell.dark{background:var(--ink)}
+  .mark-cell.dark .cname,.mark-cell.dark p{color:var(--paper)}
+  .clearspace{position:relative}
+
+  /* SOCIOMATRIX */
+  .matrix-shell{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+  @media(max-width:820px){ .matrix-shell{grid-template-columns:1fr;gap:28px} }
+  #matrix{display:grid;gap:2px;background:var(--silver-faint);border:1px solid var(--ink);aspect-ratio:1/1;width:100%}
+  #matrix .c{background:var(--paper);transition:background-color .13s linear}
+  #matrix .c.on{background:var(--ink)}
+  #matrix .c.red{background:var(--red)}
+  #matrix .c.src{background:var(--ink);box-shadow:inset 0 0 0 3px var(--paper)}
+  .matrix-read h3{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-weight:500;font-size:1.2rem;margin:0 0 1rem}
+  .matrix-read p{font-size:1.02rem;max-width:42ch}
+  .readout{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--silver);margin:1.2rem 0;border-top:1px solid var(--silver-faint);border-bottom:1px solid var(--silver-faint);padding:.7rem 0}
+  .readout b{color:var(--ink)}
+  .readout .r{color:var(--red)}
+  .btn{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;background:var(--paper);color:var(--ink);border:1px solid var(--ink);padding:.75rem 1.1rem;cursor:pointer;transition:background .12s,color .12s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+  /* COLOR */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint)}
+  .sw{padding:0}
+  .sw .chip{height:96px;border-bottom:1px solid var(--silver-faint)}
+  .sw .meta{padding:.8rem .9rem;background:var(--card)}
+  .sw .nm{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem}
+  .sw .hx{font-family:var(--cap);letter-spacing:.1em;font-size:.66rem;color:var(--silver);margin-top:.2rem}
+  .sw .role{font-size:.82rem;color:var(--ink);margin-top:.35rem;font-family:var(--serif)}
+  .named{border:1px solid var(--silver-faint);background:var(--card);padding:1rem 1.2rem;margin-top:1.2rem}
+  .named b{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem}
+  .named .m{display:inline-block;width:.62em;height:.62em;background:var(--red);margin-right:.55em;vertical-align:baseline}
+
+  /* TYPE */
+  .specimen{background:var(--card);border:1px solid var(--silver-faint);padding:clamp(24px,3vw,44px)}
+  .sp-caps{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-weight:600;font-size:clamp(1.8rem,5vw,3.2rem);line-height:1;margin:0}
+  .sp-sub{font-family:var(--cap);text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;color:var(--silver);margin:.9rem 0 0}
+  .sp-body{font-family:var(--serif);font-size:1.12rem;max-width:60ch;margin:1.6rem 0 0}
+  .sp-body .fn{font-family:var(--serif);vertical-align:super;font-size:.7em;color:var(--red)}
+  .type-scale{margin-top:1.5rem;border-top:1px solid var(--silver-faint)}
+  .ts-row{display:grid;grid-template-columns:130px 1fr;gap:1.2rem;padding:1rem 0;border-bottom:1px solid var(--silver-faint);align-items:baseline}
+  .ts-row .tag{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.66rem;color:var(--silver)}
+  @media(max-width:560px){.ts-row{grid-template-columns:1fr;gap:.3rem}}
+
+  /* GRID / shapes demo */
+  .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint)}
+  .demo{background:var(--card);padding:clamp(22px,2.6vw,34px)}
+  .demo .lattice{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;aspect-ratio:1/1;max-width:180px}
+  .demo .lattice i{border:1px solid var(--silver-faint)}
+  .demo .lattice.filled i:nth-child(3n){background:var(--ink);border-color:var(--ink)}
+  .demo .lattice.filled i:nth-child(7){background:var(--red);border-color:var(--red)}
+  .demo h4{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;margin:1.1rem 0 .4rem}
+  .demo p{font-size:.86rem;color:var(--silver);margin:0}
+
+  /* APPLICATIONS */
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2vw,28px)}
+  .app{border:1px solid var(--ink);background:var(--card);overflow:hidden}
+  .app .caption{font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;color:var(--silver);padding:.7rem .9rem;border-top:1px solid var(--silver-faint);background:var(--paper)}
+  .app-body{padding:clamp(18px,2.4vw,28px);aspect-ratio:16/10;position:relative;display:flex;flex-direction:column}
+  /* site mock */
+  .site-nav{display:flex;gap:1rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.5rem;color:var(--silver);border-bottom:1px solid var(--silver-faint);padding-bottom:.5rem}
+  .site-wm{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.1em;font-size:1.15rem;line-height:1;margin-top:auto}
+  .site-ab{font-family:var(--serif);font-size:.66rem;color:var(--ink);margin-top:.5rem;max-width:34ch}
+  .site-mini{position:absolute;top:14%;right:8%;width:34%;display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+  .site-mini i{aspect-ratio:1/1;border:1px solid var(--silver-faint)}
+  .site-mini i.on{background:var(--ink);border-color:var(--ink)} .site-mini i.red{background:var(--red);border-color:var(--red)}
+  /* slide */
+  .slide{justify-content:center;gap:.6rem}
+  .slide .kick{font-family:var(--cap);text-transform:uppercase;letter-spacing:.24em;font-size:.54rem;color:var(--silver)}
+  .slide .title{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.06em;font-size:1.05rem;line-height:1.05}
+  .slide .foot{font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.5rem;color:var(--silver);margin-top:auto;display:flex;justify-content:space-between}
+  /* cv */
+  .cv .cvname{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.12em;font-size:1.1rem}
+  .cv .cvsub{font-family:var(--cap);text-transform:uppercase;letter-spacing:.2em;font-size:.52rem;color:var(--silver);margin:.4rem 0 .7rem}
+  .cv .cvcontact{font-family:var(--serif);font-size:.62rem;color:var(--ink);display:flex;gap:.9rem;flex-wrap:wrap;margin-top:auto;border-top:1px solid var(--ink);padding-top:.5rem}
+  /* avatar */
+  .avatar{background:var(--ink);align-items:center;justify-content:center}
+  .avatar .amark{width:58%;height:58%}
+
+  .voice{max-width:64ch}
+  .voice p{margin:0 0 1rem}
+  .voice .ex{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:1rem 0;font-style:italic;color:var(--ink);font-size:1.15rem}
+
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--silver-faint);border:1px solid var(--silver-faint)}
+  @media(max-width:560px){.dd{grid-template-columns:1fr}}
+  .dd > div{background:var(--card);padding:clamp(20px,2.6vw,34px)}
+  .dd h4{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;margin:0 0 1rem}
+  .dd ul{margin:0;padding-left:1.1rem}
+  .dd li{margin:.5rem 0;font-size:.92rem}
+  .dd li::marker{content:"— "}
+
+  footer{padding:2.4rem 0 3rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;color:var(--silver);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+
+  @media(prefers-reduced-motion:reduce){ #matrix .c{transition:none} }
+</style>
+
+<button class="toggle" id="toggle" aria-label="Toggle theme">◧ theme</button>
+
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="mh-top"><span>Brand Identity System</span><span>№ 01 · MMXXVI</span></div>
+    <hr class="rule">
+    <div class="mh-grid">
+      <div>
+        <h1 class="wordmark">Bernardo<br>Villegas Moreno</h1>
+        <p class="northstar">“The Sociomatrix” — a Vienna Secession square lattice read as a social matrix: an open square is someone not yet reached; a filled square is an effect that has landed.</p>
+      </div>
+      <svg class="mh-mark" id="mhmark" viewBox="0 0 100 100" aria-label="Villegas Moreno mark"></svg>
+    </div>
+    <hr class="rule">
+  </header>
+
+  <!-- 01 THE MARK -->
+  <section>
+    <div class="seclabel"><span class="no">§ 01</span><h2>The Mark</h2></div>
+    <div class="mark-grid">
+      <div class="mark-cell">
+        <svg class="box" id="mark-primary" viewBox="0 0 100 100" aria-label="Primary mark"></svg>
+        <div><div class="cname cap">Primary · the matrix-M</div><p>Filled cells trace an <b>M</b> — Moreno, matrix — inside its square. One cell is Sociometric Red: the externality, the one who wasn&rsquo;t present.</p></div>
+      </div>
+      <div class="mark-cell">
+        <svg class="box" id="mark-construct" viewBox="0 0 100 100" aria-label="Construction grid"></svg>
+        <div><div class="cname cap">Construction · 5 × 5</div><p>Built on a five-cell lattice. The clear space equals one cell on every side; never place the mark tighter.</p></div>
+      </div>
+      <div class="mark-cell dark">
+        <svg class="box" id="mark-reversed" viewBox="0 0 100 100" aria-label="Reversed mark"></svg>
+        <div><div class="cname cap">Reversed</div><p>On ink, the fills become paper. The red holds. This is the avatar and favicon lockup.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 02 THE MATRIX -->
+  <section>
+    <div class="seclabel"><span class="no">§ 02</span><h2>The Sociomatrix</h2></div>
+    <div class="matrix-shell">
+      <div id="matrix" role="img" aria-label="A grid of squares; a pulse fills cells outward from a source to show a social effect reaching a network."></div>
+      <div class="matrix-read">
+        <h3>The signature motif</h3>
+        <p>The research made into an instrument. A pulse begins at one node — a single human&ndash;AI interaction — and fills the lattice outward. Every square it reaches is a person the effect touched: a colleague, a patient, a decision-maker who was never in the room.</p>
+        <div class="readout">source <b id="ro-src">▪ human + AI</b> &nbsp;·&nbsp; reached <b id="ro-n">0</b> nodes &nbsp;·&nbsp; <span class="r">1 unmeasured</span></div>
+        <button class="btn" id="fire">▸ read the network</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 03 COLOR -->
+  <section>
+    <div class="seclabel"><span class="no">§ 03</span><h2>Colour</h2></div>
+    <div class="swatches" id="swatches"></div>
+    <div class="named"><span class="m"></span><b>The One Red Rule.</b> &nbsp;Sociometric Red appears exactly once per view — on the single element carrying the &ldquo;hidden cost made visible&rdquo; meaning. A second red anywhere is a bug.</div>
+    <div class="named"><b>The Fill-Not-Hue Rule.</b> &nbsp;State is shown by filling a cell solid ink (or inverting it), never by tinting. Colour is meaning, not decoration.</div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 04 TYPE -->
+  <section>
+    <div class="seclabel"><span class="no">§ 04</span><h2>Typography</h2></div>
+    <div class="specimen">
+      <p class="sp-caps">Villegas Moreno</p>
+      <p class="sp-sub">Josefin Sans · geometric secession capitals · letterspaced</p>
+      <p class="sp-body">I examine how AI assistance creates ripple effects beyond individual users<span class="fn">1</span> — the interpersonal and institutional consequences when AI-assisted work flows to colleagues, patients, and decision-makers who weren&rsquo;t present.</p>
+      <p class="sp-sub" style="margin-top:1.4rem">Spectral · the reading voice · the abstract, prose &amp; apparatus</p>
+      <div class="type-scale">
+        <div class="ts-row"><span class="tag">Wordmark</span><span style="font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.14em;font-size:1.6rem">Villegas Moreno</span></div>
+        <div class="ts-row"><span class="tag">Display / §</span><span style="font-family:var(--cap);text-transform:uppercase;font-weight:500;letter-spacing:.12em;font-size:1.25rem">The Mechanism</span></div>
+        <div class="ts-row"><span class="tag">Label / nav</span><span class="cap" style="font-size:.8rem">_ME · _RESEARCH · _WORK · _CONTACT</span></div>
+        <div class="ts-row"><span class="tag">Body</span><span style="font-family:var(--serif);font-size:1.1rem">A local optimizer with hidden costs.</span></div>
+        <div class="ts-row"><span class="tag">Apparatus</span><span style="font-family:var(--serif);font-size:.86rem;color:var(--silver)">¹ the colleague, the patient, the decision-maker.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 05 GRID & SHAPES -->
+  <section>
+    <div class="seclabel"><span class="no">§ 05</span><h2>Grid &amp; Form</h2></div>
+    <div class="demo-grid">
+      <div class="demo"><div class="lattice"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><h4>Open lattice</h4><p>The idle state. Pierced cells, 1px silver rule.</p></div>
+      <div class="demo"><div class="lattice filled"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><h4>Filled state</h4><p>Effects landing. Solid ink; one red.</p></div>
+      <div class="demo"><div style="display:flex;gap:8px;align-items:flex-end;height:auto"><div style="width:52px;height:52px;border:1px solid var(--ink)"></div><div style="width:52px;height:52px;background:var(--ink)"></div><div style="width:52px;height:52px;background:var(--red)"></div></div><h4>Zero radius</h4><p>Square corners, flat surfaces. No rounding, no shadow — ever.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 06 VOICE -->
+  <section>
+    <div class="seclabel"><span class="no">§ 06</span><h2>Voice</h2></div>
+    <div class="voice">
+      <p>Precise, first-person, unhurried. Claims are specific and stand without hype. The register is a scholar explaining an idea to a peer, not a brand selling one.</p>
+      <p>Navigation and labels keep the existing lowercase command grammar (<span class="cap" style="letter-spacing:.1em">_me</span>, <span class="cap" style="letter-spacing:.1em">_research</span>), set as letterspaced capitals — the one thread carried from the old site into the new world.</p>
+      <p class="ex">&ldquo;Most AI evaluation optimizes the individual interaction. I measure what happens to the network after it.&rdquo;</p>
+    </div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 07 APPLICATIONS -->
+  <section>
+    <div class="seclabel"><span class="no">§ 07</span><h2>Applications</h2></div>
+    <div class="apps">
+      <div class="app">
+        <div class="app-body">
+          <div class="site-nav"><span>_ME</span><span>_RESEARCH</span><span>_WORK</span><span>_CONTACT</span></div>
+          <div class="site-mini" id="site-mini"></div>
+          <div class="site-wm">Villegas<br>Moreno</div>
+          <div class="site-ab">Externalities of human&ndash;AI interaction — the effects that land on those who weren&rsquo;t present.</div>
+        </div>
+        <div class="caption">Website · home</div>
+      </div>
+      <div class="app">
+        <div class="app-body slide">
+          <div class="kick">CHIA · TRACE Lab · Cambridge</div>
+          <div class="title">Measuring the<br>Downstream Costs<br>of AI Assistance</div>
+          <div class="foot"><span>Villegas Moreno</span><span>§ 2026</span></div>
+        </div>
+        <div class="caption">Talk · title slide</div>
+      </div>
+      <div class="app">
+        <div class="app-body cv">
+          <div class="cvname">Bernardo Villegas Moreno</div>
+          <div class="cvsub">PhD candidate · Human-Inspired AI · Cambridge</div>
+          <div style="font-family:var(--serif);font-size:.66rem;color:var(--ink);max-width:36ch">Curriculum Vitæ — social externalities of human&ndash;AI interaction.</div>
+          <div class="cvcontact"><span>bjv30@cam.ac.uk</span><span>ORCID 0000-0001-6919-3996</span><span>Scholar</span></div>
+        </div>
+        <div class="caption">Curriculum vitæ · header</div>
+      </div>
+      <div class="app">
+        <div class="app-body avatar">
+          <svg class="amark" id="mark-avatar" viewBox="0 0 100 100" aria-label="Avatar mark"></svg>
+        </div>
+        <div class="caption">Social · avatar</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule faint">
+
+  <!-- 08 DO / DON'T -->
+  <section>
+    <div class="seclabel"><span class="no">§ 08</span><h2>Do &amp; Don&rsquo;t</h2></div>
+    <div class="dd">
+      <div>
+        <h4>Do</h4>
+        <ul>
+          <li>Align everything to the square lattice.</li>
+          <li>Show state by filling or inverting a cell.</li>
+          <li>Keep red to one element per view.</li>
+          <li>Set titles in letterspaced Josefin caps; read in Spectral.</li>
+          <li>Keep corners at 0 and surfaces flat.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Don&rsquo;t</h4>
+        <ul>
+          <li>Use a cream ground or a serif display (the academic default).</li>
+          <li>Return to the dark-neon &ldquo;techy&rdquo; look.</li>
+          <li>Add a second accent, a gradient, or a rounded corner.</li>
+          <li>Set body copy in Josefin or a title in Spectral.</li>
+          <li>Float cells on shadows to fake depth.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <footer>
+    <span>The Sociomatrix · identity system</span>
+    <span>Bernardo Villegas Moreno · MMXXVI</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ---------- theme ----------
+  var root=document.documentElement, tg=document.getElementById('toggle');
+  function cur(){ var t=root.getAttribute('data-theme'); if(t)return t; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  tg.addEventListener('click',function(){ root.setAttribute('data-theme', cur()==='dark'?'light':'dark'); });
+
+  // ---------- mark rendering ----------
+  // 5x5 pattern: 1 = ink, R = red, . = open
+  var M=["1...1","11.11","1.R.1","1...1","1...1"];
+  function drawMark(svg,opts){
+    opts=opts||{};
+    var ns="http://www.w3.org/2000/svg", n=5, pad=6, span=100-pad*2, g=2, cs=(span-g*(n-1))/n;
+    svg.innerHTML="";
+    for(var r=0;r<n;r++){ for(var c=0;c<n;c++){
+      var ch=M[r][c];
+      var x=pad+c*(cs+g), y=pad+r*(cs+g);
+      var rect=document.createElementNS(ns,"rect");
+      rect.setAttribute("x",x.toFixed(2)); rect.setAttribute("y",y.toFixed(2));
+      rect.setAttribute("width",cs.toFixed(2)); rect.setAttribute("height",cs.toFixed(2));
+      var ink=opts.reversed?"var(--paper)":"var(--ink)";
+      var open=opts.construct?"var(--silver-faint)":"transparent";
+      if(ch==="1"){ rect.setAttribute("fill",ink); }
+      else if(ch==="R"){ rect.setAttribute("fill","var(--red)"); }
+      else { rect.setAttribute("fill", opts.reversed?"transparent":open);
+             if(opts.construct){ rect.setAttribute("fill","none"); rect.setAttribute("stroke","var(--silver-faint)"); rect.setAttribute("stroke-width","0.8"); } }
+      if(opts.construct && ch!=="."){ /* filled shown solid over grid */ }
+      svg.appendChild(rect);
+    }}
+    if(opts.construct){
+      // faint outline on filled cells too, for the "grid" read
+    }
+  }
+  drawMark(document.getElementById('mhmark'),{});
+  drawMark(document.getElementById('mark-primary'),{});
+  drawMark(document.getElementById('mark-construct'),{construct:true});
+  drawMark(document.getElementById('mark-reversed'),{reversed:true});
+  drawMark(document.getElementById('mark-avatar'),{reversed:true});
+
+  // ---------- swatches ----------
+  var toks=[
+    {nm:"Lacquer Ink",hx:"#16171A",role:"Text, rules, filled cell",bg:"var(--ink)"},
+    {nm:"Sociometric Red",hx:"#C81E1E",role:"The one voice of colour",bg:"var(--red)"},
+    {nm:"Gallery Paper",hx:"#F1F2F3",role:"The ground — not cream",bg:"var(--paper)"},
+    {nm:"Card White",hx:"#FFFFFF",role:"Raised cells & cartouches",bg:"#FFFFFF"},
+    {nm:"Hammered Silver",hx:"#7C7F83",role:"Secondary text, sheen",bg:"var(--silver)"},
+    {nm:"Faint Silver",hx:"#C9CBCC",role:"Quiet lattice rules",bg:"var(--silver-faint)"}
+  ];
+  document.getElementById('swatches').innerHTML=toks.map(function(t){
+    return '<div class="sw"><div class="chip" style="background:'+t.bg+'"></div><div class="meta"><div class="nm">'+t.nm+'</div><div class="hx">'+t.hx+'</div><div class="role">'+t.role+'</div></div></div>';
+  }).join('');
+
+  // ---------- site mini matrix ----------
+  var sm=document.getElementById('site-mini'); if(sm){ var h='';
+    for(var i=0;i<36;i++){ var cls=''; if(i===14)cls=' red'; else if([7,8,13,15,20,21].indexOf(i)>=0)cls=' on'; h+='<i class="'+cls.trim()+'"></i>'; }
+    sm.innerHTML=h;
+  }
+
+  // ---------- the sociomatrix ----------
+  var N=14, grid=document.getElementById('matrix'), cells=[], reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  grid.style.gridTemplateColumns='repeat('+N+',1fr)';
+  var redIndex=null;
+  for(var i=0;i<N*N;i++){ var d=document.createElement('div'); d.className='c'; grid.appendChild(d); cells.push(d); }
+  // source near center-left, red node far corner (the "unmeasured" one)
+  var srcR=Math.floor(N*0.5), srcC=Math.floor(N*0.28), srcIdx=srcR*N+srcC;
+  var redR=Math.floor(N*0.15), redC=Math.floor(N*0.85); redIndex=redR*N+redC;
+  var timer=null;
+
+  function reset(){ cells.forEach(function(c){c.className='c';}); cells[srcIdx].classList.add('src'); }
+  function dist(idx){ var r=Math.floor(idx/N), c=idx%N; return Math.max(Math.abs(r-srcR),Math.abs(c-srcC)); } // Chebyshev = square rings
+
+  function fire(){
+    if(timer){ clearInterval(timer); }
+    reset();
+    var maxD=0; cells.forEach(function(_,i){ maxD=Math.max(maxD,dist(i)); });
+    var ring=0, reached=0;
+    var roN=document.getElementById('ro-n');
+    document.getElementById('ro-src').textContent='▪ human + AI';
+    if(reduce){ // static fill
+      cells.forEach(function(c,i){ if(i===srcIdx)return; if(i===redIndex){c.classList.add('red');reached++;return;} if(dist(i)<=Math.ceil(maxD*0.7)){c.classList.add('on');reached++;} });
+      roN.textContent=reached; return;
+    }
+    timer=setInterval(function(){
+      cells.forEach(function(c,i){
+        if(i===srcIdx) return;
+        if(dist(i)===ring){
+          if(i===redIndex){ c.classList.add('red'); } else { c.classList.add('on'); }
+          reached++;
+        }
+      });
+      roN.textContent=reached;
+      ring++;
+      if(ring>maxD){ clearInterval(timer); timer=setTimeout(function(){ if(!hover) fire(); }, 2600); }
+    }, 110);
+  }
+  var hover=false;
+  grid.addEventListener('pointerenter',function(){hover=true;});
+  grid.addEventListener('pointerleave',function(){hover=false;});
+  grid.addEventListener('click',function(e){
+    var idx=cells.indexOf(e.target); if(idx<0)return;
+    srcIdx=idx; srcR=Math.floor(idx/N); srcC=idx%N; fire();
+  });
+  document.getElementById('fire').addEventListener('click',fire);
+  reset();
+  cells[srcIdx].classList.add('src');
+  if(!reduce){ setTimeout(fire,600); } else { fire(); }
+})();
+</script>

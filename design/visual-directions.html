@@ -1,0 +1,180 @@
+<!--
+VISUAL DIRECTIONS — four alternative lenses on the same content (beyond the Sociomatrix).
+Each mockup uses Bernardo's real content, a distinct social-science visual language.
+Static mockups for choosing, not finished pages.
+-->
+<title>Visual Directions</title>
+<meta name="description" content="Four alternative visual directions for Bernardo Villegas Moreno's site — Isotype data, the field plot, the offprint, the archive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Josefin+Sans:wght@300;400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF; --silver:#8C9096; --faint:#D3D5D8; --red:#C81E1E; --teal:#1F6F6B;
+    color-scheme:light; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Spectral",Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,48px)}
+  .cap{font-family:"Josefin Sans",sans-serif;text-transform:uppercase;letter-spacing:.2em}
+  .top{display:flex;justify-content:space-between;font-family:"Josefin Sans",sans-serif;text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;color:var(--silver);padding-bottom:1rem}
+  hr{height:1px;background:var(--ink);border:0;margin:0}
+  h1{font-family:"Josefin Sans",sans-serif;text-transform:uppercase;font-weight:600;letter-spacing:.1em;font-size:clamp(1.7rem,4.4vw,2.7rem);margin:1.2rem 0 .3rem}
+  .lede{max-width:62ch;font-size:1.05rem;color:var(--ink)}
+
+  .dir{margin-top:2.6rem}
+  .dhead{display:flex;align-items:baseline;gap:1rem;margin-bottom:1rem}
+  .dhead .no{font-family:"Josefin Sans",sans-serif;letter-spacing:.2em;font-size:.72rem;color:var(--red)}
+  .dhead .nm{font-family:"Josefin Sans",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:1.15rem}
+  .dhead .trade{margin-left:auto;font-family:"Josefin Sans",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.62rem;color:var(--silver)}
+  .frame{border:1px solid var(--ink);background:var(--card);overflow:hidden;aspect-ratio:16/8;position:relative}
+  .drow{display:grid;grid-template-columns:1fr;gap:0}
+  .note{font-size:.94rem;color:var(--silver);margin:.8rem 0 0;max-width:70ch}
+  .note b{color:var(--ink)}
+
+  /* ---------- 1. ISOTYPE DATA ---------- */
+  .iso{font-family:"Archivo",sans-serif;background:var(--card);height:100%;display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+  .iso .l{padding:clamp(20px,3vw,40px);display:flex;flex-direction:column;justify-content:center}
+  .iso .kick{font-family:"Archivo";font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;color:var(--red)}
+  .iso h2{font-family:"Archivo";font-weight:900;letter-spacing:-.02em;line-height:.92;font-size:clamp(1.8rem,4vw,3rem);margin:.6rem 0 0;text-transform:uppercase}
+  .iso p{font-family:"Spectral";font-size:.95rem;color:var(--ink);max-width:34ch;margin:.9rem 0 0}
+  .iso .r{background:var(--ink);padding:clamp(20px,3vw,40px);display:flex;flex-direction:column;justify-content:center;gap:.5rem}
+  .iso .r .lab{font-family:"Archivo";font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.6rem;color:var(--paper);opacity:.7}
+  .isogrid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:.4rem}
+  .isogrid svg{width:100%;height:auto;display:block}
+
+  /* ---------- 2. THE FIELD ---------- */
+  .field{position:relative;height:100%;background:var(--card);padding:clamp(18px,2.6vw,34px)}
+  .field .ttl{position:absolute;left:clamp(18px,2.6vw,34px);top:clamp(18px,2.6vw,34px);z-index:2}
+  .field .ttl .k{font-family:"JetBrains Mono";font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+  .field .ttl h2{font-family:"Josefin Sans";text-transform:uppercase;font-weight:600;letter-spacing:.08em;font-size:clamp(1.4rem,3vw,2.2rem);margin:.4rem 0 0}
+  .field svg{position:absolute;inset:0;width:100%;height:100%}
+  .field .axl{font-family:"JetBrains Mono";font-size:9px;letter-spacing:.1em;text-transform:uppercase;fill:var(--silver)}
+
+  /* ---------- 3. THE OFFPRINT ---------- */
+  .off{height:100%;background:var(--card);padding:clamp(18px,2.6vw,36px);font-family:"Spectral"}
+  .off .run{display:flex;justify-content:space-between;font-family:"JetBrains Mono";font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);border-bottom:1px solid var(--ink);padding-bottom:.5rem}
+  .off h2{font-family:"Spectral";font-weight:600;font-size:clamp(1.5rem,3.2vw,2.4rem);line-height:1.05;margin:.9rem 0 .2rem;max-width:20ch}
+  .off .by{font-style:italic;color:var(--silver);font-size:.9rem;margin-bottom:.9rem}
+  .off .cols{column-count:2;column-gap:2rem;font-size:.82rem;line-height:1.5;color:var(--ink)}
+  .off .cols .fn{color:var(--red)}
+  .off .foot{font-family:"JetBrains Mono";font-size:.56rem;color:var(--silver);border-top:1px solid var(--faint);margin-top:.8rem;padding-top:.4rem}
+
+  /* ---------- 4. THE ARCHIVE ---------- */
+  .arc{height:100%;background:repeating-linear-gradient(0deg,var(--card),var(--card) 22px,#eeeff0 22px,#eeeff0 23px);position:relative;padding:clamp(18px,2.6vw,34px);font-family:"JetBrains Mono"}
+  .arc .card{position:absolute;background:var(--card);border:1px solid var(--ink);padding:14px 16px;box-shadow:none}
+  .arc .card .tab{position:absolute;top:-1px;left:-1px;background:var(--ink);color:var(--paper);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .5rem}
+  .arc .c1{left:6%;top:16%;width:52%;transform:rotate(-1.5deg)}
+  .arc .c2{left:34%;top:40%;width:54%;transform:rotate(1.2deg)}
+  .arc .card h3{font-family:"Josefin Sans";text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:1.05rem;margin:1rem 0 .4rem}
+  .arc .card p{font-family:"Spectral";font-size:.8rem;color:var(--silver);margin:0}
+  .arc .card .meta{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-top:.6rem}
+  .arc .pin{width:8px;height:8px;background:var(--red);position:absolute;top:10px;right:10px}
+
+  footer{margin-top:3rem;font-family:"Josefin Sans",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;color:var(--silver);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+  @media(max-width:760px){ .iso{grid-template-columns:1fr} .iso .r{display:none} .off .cols{column-count:1} .frame{aspect-ratio:4/3} }
+</style>
+
+<div class="wrap">
+  <div class="top"><span>Bernardo Villegas Moreno</span><span>visual directions · explorations</span></div>
+  <hr>
+  <h1>Other lenses</h1>
+  <p class="lede">Four alternative visual languages for the same content — each still from the social sciences, each a different way to carry the &ldquo;spread&rdquo; idea. These are quick mockups to react to, not finished pages. Your current <b>Sociomatrix</b> stays the baseline.</p>
+
+  <!-- 1 -->
+  <div class="dir">
+    <div class="dhead"><span class="no">A</span><span class="nm">Isotype Data</span><span class="trade">gains: legibility, boldness · risks: less bespoke</span></div>
+    <div class="frame">
+      <div class="iso">
+        <div class="l">
+          <span class="kick">Externalities of human–AI interaction</span>
+          <h2>Bernardo<br>Villegas Moreno</h2>
+          <p>Neurath&rsquo;s Vienna method: social facts you can read at a glance. Bolder, flatter, data-forward.</p>
+        </div>
+        <div class="r">
+          <span class="lab">One interaction → the people it reaches</span>
+          <div class="isogrid" id="isogrid"></div>
+          <span class="lab" style="margin-top:.5rem">Red = the interaction · filled = reached</span>
+        </div>
+      </div>
+    </div>
+    <p class="note"><b>Isotype</b> (Otto Neurath, Vienna 1925) made society legible to everyone through repeated pictograms. Confident, immediate, and historically your lineage — but a more common infographic register than the Sociomatrix.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="dir">
+    <div class="dhead"><span class="no">B</span><span class="nm">The Field</span><span class="trade">gains: intellectual, precise · risks: austere</span></div>
+    <div class="frame">
+      <div class="field">
+        <div class="ttl"><span class="k">_a position, not a topic</span><h2>Villegas Moreno</h2></div>
+        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" id="fieldsvg"></svg>
+      </div>
+    </div>
+    <p class="note"><b>The field diagram</b> (after Bourdieu): plot the work on axes — <i>individual ↔ collective</i>, <i>present ↔ absent</i>. You sit where others don&rsquo;t: measuring the collective and the absent. Cool, exact, argument-as-diagram.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="dir">
+    <div class="dhead"><span class="no">C</span><span class="nm">The Offprint</span><span class="trade">gains: scholarly authority · risks: quieter</span></div>
+    <div class="frame">
+      <div class="off">
+        <div class="run"><span>Villegas Moreno</span><span>Externalities of human–AI interaction</span><span>Cambridge · 2026</span></div>
+        <h2>Making the hidden social costs of AI visible</h2>
+        <div class="by">Bernardo Villegas Moreno — Center for Human-Inspired AI, University of Cambridge</div>
+        <div class="cols">
+          <p>A single human–AI interaction doesn&rsquo;t stay put. It spreads to colleagues, patients, and decision-makers who were never present<span class="fn">¹</span> — and the downstream consequences go unmeasured. This work makes those externalities visible and locates where to intervene.</p>
+          <p>Current systems optimize the individual interaction; organizational outcomes depend on what happens after it<span class="fn">²</span>. I bridge social science, cognitive science, and system design to measure effects on entire networks, not single users.</p>
+        </div>
+        <div class="foot">¹ the colleague, the patient, the decision-maker. &nbsp; ² trust, shared understanding, displaced expertise.</div>
+      </div>
+    </div>
+    <p class="note"><b>The offprint / journal page</b>: the peer-reviewed page as the interface — running heads, an abstract, a footnote apparatus where the hidden effects live. Reads as pure scholarship (echoes your journal, <i>Theorein</i>).</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="dir">
+    <div class="dhead"><span class="no">D</span><span class="nm">The Archive</span><span class="trade">gains: tactile, human · risks: less austere</span></div>
+    <div class="frame">
+      <div class="arc">
+        <div class="card c1"><span class="tab">Subject</span><span class="pin"></span><h3>Bernardo Villegas Moreno</h3><p>PhD candidate · Human-Inspired AI · Cambridge. Sociologist working inside AI.</p><div class="meta">file 01 · the researcher</div></div>
+        <div class="card c2"><span class="tab">Finding</span><span class="pin"></span><h3>The interaction spreads</h3><p>AI-assisted work reaches people who weren&rsquo;t present — the externality this file tracks.</p><div class="meta">file 02 · the mechanism</div></div>
+      </div>
+    </div>
+    <p class="note"><b>The scholar&rsquo;s file</b> (C. Wright Mills&rsquo; &ldquo;intellectual craftsmanship&rdquo;): content as index cards in a working archive. Warm and tactile; foregrounds method and the person. Least austere of the four.</p>
+  </div>
+
+  <footer><span>Explorations · react and I&rsquo;ll develop one</span><span>baseline: The Sociomatrix</span></footer>
+</div>
+
+<script>
+(function(){
+  // Isotype pictograms (20 figures = 2 rows of 10; some filled, one red)
+  var ig=document.getElementById('isogrid');
+  if(ig){
+    var svgFig='<svg viewBox="0 0 20 32"><g fill="COLOR"><circle cx="10" cy="6" r="5"/><path d="M2 32 C2 20 6 14 10 14 C14 14 18 20 18 32 Z"/></g></svg>';
+    var html='';
+    for(var i=0;i<20;i++){
+      var col = i===0? '#C81E1E' : (i<9? '#F1F2F3' : 'rgba(241,242,243,0.28)');
+      html+='<div>'+svgFig.replace('COLOR',col)+'</div>';
+    }
+    ig.innerHTML=html;
+  }
+  // Field diagram
+  var f=document.getElementById('fieldsvg');
+  if(f){
+    var ns='http://www.w3.org/2000/svg';
+    function el(t,a){var e=document.createElementNS(ns,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+    // axes
+    f.appendChild(el('line',{x1:400,y1:40,x2:400,y2:360,stroke:'#D3D5D8','stroke-width':1}));
+    f.appendChild(el('line',{x1:120,y1:200,x2:760,y2:200,stroke:'#D3D5D8','stroke-width':1}));
+    var labs=[['individual',400,32,'middle'],['collective',400,378,'middle'],['present',150,196,'start'],['absent',735,196,'end']];
+    labs.forEach(function(l){var t=el('text',{x:l[1],y:l[2],'text-anchor':l[3],class:'axl'});t.textContent=l[0];f.appendChild(t);});
+    // scatter of others (grey), clustered near individual/present (where most work sits)
+    var pts=[[330,150],[360,120],[300,175],[420,140],[380,165],[340,185],[300,120],[440,175],[280,150]];
+    pts.forEach(function(p){f.appendChild(el('circle',{cx:p[0],cy:p[1],r:4,fill:'#8C9096'}));});
+    // you: collective + absent quadrant (bottom-right), red, labeled
+    f.appendChild(el('circle',{cx:600,cy:300,r:7,fill:'#C81E1E'}));
+    var yt=el('text',{x:614,y:304,class:'axl',fill:'#16171A'});yt.textContent='you';f.appendChild(yt);
+    // faint square ring around you (the sociomatrix nod)
+    f.appendChild(el('rect',{x:588,y:288,width:24,height:24,fill:'none',stroke:'#C81E1E','stroke-width':0.6,opacity:0.5}));
+  }
+})();
+</script>
