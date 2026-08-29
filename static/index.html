@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--
+WEBSITE OPENER — organic human/AI network with a live TRANSMISSION: the AI effect (red) travels
+edge-by-edge from Alice+AI to others; each person reached gets a small red mark (secondhand).
+Then the rest of the site scrolls up beneath. Sociomatrix identity: white, ink, one red family, squares.
+-->
+<title>Villegas Moreno</title>
+<meta name="description" content="Bernardo Villegas Moreno. The ripple effects of AI assistance: when one person uses AI, the effect travels to people who never did.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#16171A; --paper:#F1F2F3; --card:#FFFFFF; --silver:#8C9096; --faint:#D3D5D8; --red:#C81E1E;
+    --cap:"Josefin Sans",Futura,"Century Gothic",sans-serif; --serif:"Spectral",Georgia,serif; --pad:clamp(20px,5vw,64px); color-scheme:light; }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--ink);color:var(--paper)}
+  .wrap{max-width:1200px;margin:0 auto;padding-inline:var(--pad)}
+  hr.rule{height:1px;background:var(--ink);border:0;margin:0}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:40;background:linear-gradient(var(--paper),rgba(241,242,243,0));}
+  .bar{position:relative;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:16px var(--pad)}
+  .brand{font-family:var(--cap);text-transform:uppercase;font-weight:700;letter-spacing:.1em;font-size:.92rem}
+  .brand b{color:var(--red)}
+  nav{display:flex;gap:1.5rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--silver)}
+  nav a{transition:color .2s} nav a:hover{color:var(--ink)}
+  .navtoggle{display:none;background:transparent;border:1px solid var(--ink);color:var(--ink);width:40px;height:40px;font-size:1.15rem;cursor:pointer;align-items:center;justify-content:center}
+  @media(max-width:720px){
+    .navtoggle{display:flex}
+    nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--ink);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease,visibility .25s}
+    nav.open{opacity:1;visibility:visible;transform:none}
+    nav a{padding:1rem var(--pad);border-top:1px solid var(--faint);color:var(--ink)}
+  }
+
+  /* HERO OPENER */
+  .hero{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:center}
+  #opener{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,var(--paper) 0%,var(--paper) 30%,rgba(241,242,243,0.55) 52%,rgba(241,242,243,0) 80%)}
+  .hero-inner{position:relative;z-index:3;width:100%}
+  .kicker{font-family:var(--cap);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--silver);display:inline-flex;align-items:center;gap:.7em}
+  .kicker .sq{width:9px;height:9px;background:var(--red);display:inline-block}
+  h1{font-family:var(--cap);text-transform:uppercase;font-weight:600;letter-spacing:.08em;line-height:.96;font-size:clamp(2.4rem,7vw,5.2rem);margin:1.1rem 0 0;max-width:14ch}
+  .tag{font-size:clamp(1.08rem,1.7vw,1.4rem);line-height:1.5;max-width:42ch;margin:1.3rem 0 0}
+  .tag em{font-style:italic;color:var(--red)}
+  .affil{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--silver);margin:1.2rem 0 0}
+  .actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.9rem}
+  .btn{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;border:1px solid var(--ink);color:var(--ink);background:transparent;padding:.78rem 1.1rem;cursor:pointer;transition:background .12s,color .12s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.pri{background:var(--ink);color:var(--paper)} .btn.pri:hover{background:transparent;color:var(--ink)}
+  .scrollcue{position:absolute;left:var(--pad);bottom:20px;z-index:3;font-family:var(--cap);text-transform:uppercase;letter-spacing:.24em;font-size:.62rem;color:var(--silver);display:flex;align-items:center;gap:.6em}
+  .scrollcue::after{content:"";width:1px;height:26px;background:linear-gradient(var(--silver),transparent);animation:cue 2.4s ease-in-out infinite}
+  @keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* SECTIONS */
+  section{padding:clamp(56px,9vh,120px) 0;border-top:1px solid var(--silver-faint,#D3D5D8)}
+  .sechead{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.4rem}
+  .sechead .no{font-family:var(--cap);font-size:.72rem;letter-spacing:.24em;color:var(--red)}
+  .sechead h2{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-weight:500;font-size:clamp(1.5rem,3.2vw,2.3rem);margin:0}
+  .lead{font-size:clamp(1.15rem,1.8vw,1.5rem);line-height:1.5;max-width:60ch}
+  .lead strong{font-weight:600} .lead em{font-style:italic;color:var(--red)}
+  p.body{max-width:64ch;color:var(--ink)} p.body a{border-bottom:1px solid var(--silver)} p.body a:hover{border-color:var(--red)}
+  .down{margin-top:2.4rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#D3D5D8;border:1px solid #D3D5D8}
+  @media(max-width:900px){ .down{grid-template-columns:1fr} }
+  .dcell{background:var(--card);padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.6rem}
+  .dcell .sq{width:14px;height:14px;background:var(--ink)}
+  .dcell .who{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}
+  .dcell .eff{font-size:.94rem;color:var(--silver)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#D3D5D8;border:1px solid #D3D5D8}
+  .cardw{background:var(--card);padding:clamp(24px,3vw,40px)}
+  .cardw .cno{font-family:var(--cap);letter-spacing:.18em;font-size:.68rem;color:var(--red)}
+  .cardw h3{font-family:var(--cap);text-transform:uppercase;letter-spacing:.05em;font-weight:500;font-size:1.2rem;margin:.9rem 0 .8rem}
+  .cardw p{color:var(--silver);font-size:.98rem;margin:0;max-width:44ch}
+  .tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+  .tag2{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;border:1px solid #D3D5D8;padding:.5rem .8rem;transition:border-color .2s} .tag2:hover{border-color:var(--red)}
+  .path{display:flex;flex-direction:column}
+  .step{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:clamp(16px,3vw,48px);padding:1.7rem 0;border-top:1px solid #D3D5D8;align-items:baseline}
+  .step:first-child{border-top:0}
+  .step .when{font-family:var(--cap);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:var(--red)}
+  .step h4{margin:0;font-family:var(--cap);text-transform:uppercase;letter-spacing:.04em;font-weight:500;font-size:1.05rem}
+  .step .org{margin:.35rem 0 0;font-size:.98rem} .step .note{color:var(--silver);margin:.3rem 0 0;font-size:.86rem}
+  @media(max-width:560px){ .step{grid-template-columns:1fr;gap:.4rem} }
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#D3D5D8;border:1px solid #D3D5D8;margin-top:2.2rem}
+  .link{background:var(--card);padding:1.2rem 1.4rem;display:flex;justify-content:space-between;align-items:center;font-family:var(--cap);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;transition:background .18s,color .18s}
+  .link:hover{background:var(--ink);color:var(--paper)} .link .arw{color:var(--silver)} .link:hover .arw{color:var(--paper)}
+  @media(max-width:560px){ .contact{grid-template-columns:1fr} }
+  footer{padding:2.4rem 0 3rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:var(--silver);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--ink)}
+  .rlist{display:flex;flex-direction:column}
+  .ritem{padding:1.5rem 0;border-top:1px solid #D3D5D8} .ritem:first-child{border-top:0}
+  .ritem .rtop{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline}
+  .ritem .org{font-family:var(--cap);text-transform:uppercase;letter-spacing:.05em;font-weight:500;font-size:1.02rem}
+  .ritem .date{font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;color:var(--silver);white-space:nowrap}
+  .ritem .role{font-family:var(--cap);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--red);margin:.4rem 0 .5rem}
+  .ritem p{margin:0;color:var(--silver);font-size:.96rem;max-width:72ch}
+  .subhead{font-family:var(--cap);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--ink);margin:1.8rem 0 .4rem}
+  .pubs{list-style:none;padding:0;margin:0;counter-reset:pub}
+  .pubs li{position:relative;padding:1rem 0 1rem 2.4rem;border-top:1px solid #D3D5D8;font-size:.96rem;max-width:82ch;color:var(--ink)} .pubs li:first-child{border-top:0}
+  .pubs li::before{counter-increment:pub;content:counter(pub,decimal-leading-zero);position:absolute;left:0;top:1.05rem;font-family:var(--cap);letter-spacing:.1em;font-size:.72rem;color:var(--red)}
+  .pubs b{font-weight:600} .pubs .venue{font-style:italic;color:var(--silver)} .pubs a{border-bottom:1px solid var(--silver)}
+  .pubs .badge{display:inline-block;font-family:var(--cap);text-transform:uppercase;letter-spacing:.08em;font-size:.58rem;color:var(--red);border:1px solid var(--red);padding:.12em .45em;margin-left:.3em}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .assoc{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#D3D5D8;border:1px solid #D3D5D8;margin-top:1.6rem}
+  @media(max-width:640px){ .assoc{grid-template-columns:repeat(2,1fr)} }
+  .assoc .logo{background:var(--card);min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.2rem 1rem;font-family:var(--cap);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--silver)}
+  @media(prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none} .scrollcue::after{animation:none} html{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+
+
+<header><div class="bar">
+  <a class="brand" href="#top">_<b>bjv</b></a>
+  <nav id="nav"><a href="#research">_research</a><a href="#publications">_publications</a><a href="#talks">_talks</a><a href="#teaching">_teaching</a><a href="#me">_me</a><a href="#contact">_contact</a></nav>
+  <button class="navtoggle" id="navtoggle" aria-label="Open menu" aria-expanded="false">≡</button>
+</div></header>
+
+<main id="top">
+  <!-- OPENER -->
+  <section class="hero">
+    <canvas id="opener" aria-label="A network of people and AI agents; the AI effect travels along the connections, marking each person it reaches."></canvas>
+    <div class="veil"></div>
+    <div class="hero-inner"><div class="wrap">
+      <span class="kicker"><span class="sq"></span> the ripple effects of AI assistance</span>
+      <h1>Bernardo Villegas Moreno</h1>
+      <p class="tag">When one person uses AI, the effect <em>travels</em>. It reaches colleagues, patients, and decision-makers who never did.</p>
+      <p class="affil">Center for Human-Inspired AI · TRACE Lab · University of Cambridge</p>
+      <div class="actions"><a class="btn pri" href="#research">_read the research →</a><a class="btn" href="#">_cv</a></div>
+    </div></div>
+    <div class="scrollcue">scroll</div>
+  </section>
+
+  <div class="wrap">
+    <section id="me">
+      <div class="sechead reveal"><span class="no">§ 01</span><h2>_me</h2></div>
+      <p class="lead reveal">My work sits at the intersection of <strong>social science and technology</strong>, guided by the belief that AI should serve the best interests of humanity.</p>
+      <p class="body reveal" style="margin-top:1.4rem">I am a PhD candidate at the <a href="https://www.chia.cam.ac.uk/" target="_blank" rel="noopener">Centre for Human-Inspired Artificial Intelligence</a> (TRACE Lab), University of Cambridge, and a member of <a href="https://www.wolfson.cam.ac.uk/" target="_blank" rel="noopener">Wolfson College</a>. Previously General Secretary of FEUPE and President of FEUCE.</p>
+    </section>
+    <section id="research">
+      <div class="sechead reveal"><span class="no">§ 02</span><h2>Research</h2></div>
+      <div class="rlist reveal">
+        <div class="ritem"><div class="rtop"><span class="org">TRACE Lab, Cambridge · AI Safety Institute (UK)</span><span class="date">2025–2026</span></div><div class="role">Lead Researcher</div><p>Experimental infrastructure for controlled behavioural studies of ripple AI effects: synchronous, multi-user designs measuring how AI assistance reshapes downstream knowledge transfer, trust calibration, and collaborative decision-making across participant dyads.</p></div>
+        <div class="ritem"><div class="rtop"><span class="org">TRACE Lab, Cambridge · NHS</span><span class="date">2026</span></div><div class="role">Lead Researcher</div><p>AI externalities in healthcare: how AI assistance to physicians propagates through clinical workflows to patient outcomes, where the person affected never used the system.</p></div>
+        <div class="ritem"><div class="rtop"><span class="org">Secondthought · Cosmos Institute</span><span class="date">2026</span></div><div class="role">Collaborator</div><p>A research project supported by the Cosmos Institute. Primary grantee: Joy Wang.</p></div>
+        <div class="ritem"><div class="rtop"><span class="org">International Programme on AI Evaluation</span><span class="date">2025</span></div><div class="role">Student Fellow · Safety Track</div><p>A framework for social evaluations of AI: the second- and third-order effects of deployment on human collaboration, and cross-cultural sociotechnical safety-evaluation methods.</p></div>
+        <div class="ritem"><div class="rtop"><span class="org">University of Edinburgh · Alan Turing Institute</span><span class="date">2021–2024</span></div><div class="role">Research Collaborator</div><p>An interaction-based metric for ML interpretability: whether users can calibrate trust, spot errors, and act on explanations. Interpretability emerges through sustained interaction, not as a fixed property of the model.</p></div>
+        <div class="ritem"><div class="rtop"><span class="org">Pontificia Universidad Católica del Ecuador</span><span class="date">2019–2023</span></div><div class="role">Research Associate</div><p>Two interdisciplinary projects: a multilevel longitudinal analysis of 2,000+ students&rsquo; performance trajectories (<em>Journal of Hispanic Higher Education</em>); and a network analysis of economic-elite concentration across Ecuador&rsquo;s top 100 firms (<em>Redes</em>).</p></div>
+      </div>
+    </section>
+    <section id="mechanism">
+      <div class="sechead reveal"><span class="no">§ 03</span><h2>The mechanism</h2></div>
+      <p class="lead reveal">Current AI systems are <strong>optimizers with hidden costs</strong>. They enhance the individual while the ripple effects go unmeasured. I make those externalities visible, and I locate where to intervene.</p>
+      <div class="down reveal">
+        <div class="dcell"><span class="sq"></span><span class="who">Colleague</span><span class="eff">inherits work they never saw produced</span></div>
+        <div class="dcell"><span class="sq"></span><span class="who">Patient</span><span class="eff">receives a decision shaped by unseen assistance</span></div>
+        <div class="dcell"><span class="sq"></span><span class="who">Decision-maker</span><span class="eff">acts on AI-generated content downstream</span></div>
+        <div class="dcell"><span class="sq"></span><span class="who">Team</span><span class="eff">shared understanding quietly fragments</span></div>
+        <div class="dcell"><span class="sq"></span><span class="who">Institution</span><span class="eff">expertise is gradually displaced</span></div>
+      </div>
+    </section>
+    <section id="publications">
+      <div class="sechead reveal"><span class="no">§ 04</span><h2>Publications</h2></div>
+      <div class="subhead reveal">Working papers</div>
+      <ol class="pubs reveal">
+        <li><b>Villegas, B.</b>; Bhatt, U.; Collins, K. et al. (2026). &ldquo;Secondhand AI.&rdquo; <span class="badge">Submitted · Nature Human Behaviour</span></li>
+      </ol>
+      <div class="subhead reveal">Peer-reviewed</div>
+      <ol class="pubs reveal">
+        <li>Buenaño, E.; Araujo, L.; <b>Villegas, B.</b>; Morales, F. (2025). &ldquo;The determinant factors of academic performance of university students in Ecuador: a multilevel longitudinal study.&rdquo; <span class="venue">Journal of Hispanic Higher Education.</span> <a href="https://doi.org/10.1177/15381927251392101" target="_blank" rel="noopener">doi</a></li>
+        <li><b>Villegas, B.</b> &amp; Morales, F. (2021). &ldquo;The economic elites of contemporary Ecuador: shareholder networks of the 100 highest-income companies (2007–2016).&rdquo; <span class="venue">Redes 32(1).</span> <a href="https://doi.org/10.5565/rev/redes.887" target="_blank" rel="noopener">doi</a></li>
+        <li>Jaramillo, J.; Molina, D.; <b>Villegas, B.</b> (2021). &ldquo;Will Artificial Intelligence overcome professional experience? AI and legal analytics in international commercial arbitration.&rdquo; In <span class="venue">Arbitration and New Technologies.</span> Lima: Themis.</li>
+      </ol>
+    </section>
+    <section id="talks">
+      <div class="sechead reveal"><span class="no">§ 05</span><h2>Talks &amp; posters</h2></div>
+      <div class="path reveal">
+        <div class="step"><div class="when">CHIA</div><div><h4>Secondhand AI: empirical evidence <span class="badge">Best Poster</span></h4><p class="note">Centre for Human-Inspired AI, Cambridge · 2026</p></div></div>
+        <div class="step"><div class="when">Machine + Behavior</div><div><h4>The second-order effects of AI assistance in everyday knowledge transfer</h4><p class="note">2026</p></div></div>
+        <div class="step"><div class="when">Wolfson College</div><div><h4>Beyond the User: how AI assistance reshapes human-to-human interaction</h4><p class="note">Cambridge Research Event · 2026</p></div></div>
+        <div class="step"><div class="when">Microsoft Research</div><div><h4>Secondhand AI</h4><p class="note">People-Centric AI Workshop, Cambridge · 2026</p></div></div>
+      </div>
+    </section>
+    <section id="path">
+      <div class="sechead reveal"><span class="no">§ 06</span><h2>The path</h2></div>
+      <div class="path reveal">
+        <div class="step"><div class="when">2025–2030</div><div><h4>PhD, Human-Inspired Artificial Intelligence</h4><p class="org">University of Cambridge · Wolfson College</p><p class="note">TRACE Lab, CHIA · Supervisor Dr. Umang Bhatt · Advisor Prof. Anna Korhonen</p></div></div>
+        <div class="step"><div class="when">2021–2023</div><div><h4>MSc, Data Science, Technology &amp; Innovation (Distinction)</h4><p class="org">University of Edinburgh</p><p class="note">Supervisor Dr. Gian Marco Campagnolo · Dissertation: a social data-science metric for ML interpretability</p></div></div>
+        <div class="step"><div class="when">2014–2019</div><div><h4>BA, Sociology (First-Class Honours)</h4><p class="org">Pontificia Universidad Católica del Ecuador</p><p class="note">Minor in Social Development</p></div></div>
+      </div>
+    </section>
+    <section id="teaching">
+      <div class="sechead reveal"><span class="no">§ 07</span><h2>Teaching</h2></div>
+      <div class="path reveal">
+        <div class="step"><div class="when">King&rsquo;s College</div><div><h4>Concurrent &amp; Distributed Systems · Computer Networking</h4><p class="note">Supervisions, University of Cambridge (2025–26)</p></div></div>
+        <div class="step"><div class="when">Gonville &amp; Caius</div><div><h4>Concurrent &amp; Distributed Systems</h4><p class="note">Supervisions, University of Cambridge (Lent 2026)</p></div></div>
+        <div class="step"><div class="when">CHIA</div><div><h4>MSc Dissertation Co-Supervisor</h4></div></div>
+      </div>
+    </section>
+    <section>
+      <div class="sechead reveal"><span class="no">§ 08</span><h2>Fellowships &amp; awards</h2></div>
+      <div class="path reveal">
+        <div class="step"><div class="when">2026</div><div><h4>Selected for <a href="https://sparkatkings.com" target="_blank" rel="noopener" style="border-bottom:1px solid var(--silver)">SPARK 2.0</a></h4><p class="note">King&rsquo;s College, Cambridge</p></div></div>
+        <div class="step"><div class="when">2026</div><div><h4>Student Fellow, International Programme on AI Evaluation</h4><p class="note">Capabilities &amp; Safety</p></div></div>
+        <div class="step"><div class="when">2026–2028</div><div><h4>Student Fellow, .406 Ventures</h4></div></div>
+        <div class="step"><div class="when">2023</div><div><h4>MSc Distinction, University of Edinburgh</h4></div></div>
+        <div class="step"><div class="when">2021</div><div><h4>Fondo Publícalo Award, best published dissertation (PUCE)</h4></div></div>
+        <div class="step"><div class="when">2014</div><div><h4>SNNA Scholarship, top 1% nationally on the ENES exam</h4></div></div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="sechead reveal"><span class="no">§ 09</span><h2>_contact</h2></div>
+      <p class="lead reveal">Open to collaboration on the downstream effects of AI.</p>
+      <div class="contact reveal">
+        <a class="link" href="mailto:bjv30@cam.ac.uk">bjv30@cam.ac.uk<span class="arw">↗</span></a>
+        <a class="link" href="https://scholar.google.com/citations?user=j6a2kQkAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar<span class="arw">↗</span></a>
+        <a class="link" href="https://github.com/bjv01" target="_blank" rel="noopener">GitHub · bjv01<span class="arw">↗</span></a>
+        <a class="link" href="https://linkedin.com/in/bernardovillegas96" target="_blank" rel="noopener">LinkedIn · bernardovillegas96<span class="arw">↗</span></a>
+        <a class="link" href="https://orcid.org/0000-0001-6919-3996" target="_blank" rel="noopener">ORCID · 0000-0001-6919-3996<span class="arw">↗</span></a>
+        <a class="link" href="/uploads/resume.pdf">Curriculum Vitæ (PDF)<span class="arw">↗</span></a>
+      </div>
+    </section>
+    <section id="associations">
+      <div class="sechead reveal"><span class="no">§ 10</span><h2>Affiliations</h2></div>
+      <div class="assoc reveal">
+        <div class="logo">TRACE Lab</div>
+        <div class="logo">University of Cambridge</div>
+        <div class="logo">Wolfson College</div>
+        <div class="logo">eLab · SPARK</div>
+      </div>
+    </section>
+    <footer><span>© 2026 Bernardo Villegas Moreno</span><span>The Sociomatrix</span></footer>
+  </div>
+</main>
+
+<script>
+(function(){
+  var cv=document.getElementById('opener'); if(!cv) return;
+  var ctx=cv.getContext('2d'), root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function C(k){return getComputedStyle(root).getPropertyValue(k).trim();}
+  var COL; function refresh(){COL={ink:C('--ink'),card:C('--card'),silver:C('--silver'),faint:C('--faint'),red:C('--red')};} refresh();
+  function rgba(hex,a){hex=hex.replace('#','');if(hex.length===3)hex=hex.split('').map(function(x){return x+x;}).join('');return'rgba('+parseInt(hex.slice(0,2),16)+','+parseInt(hex.slice(2,4),16)+','+parseInt(hex.slice(4,6),16)+','+a+')';}
+  var DPR=Math.min(window.devicePixelRatio||1,2), W=0,H=0, nodes=[], edges=[], adj=[], seed=0, aliceIdx=0, aiIdx=1;
+  function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+  function cl(v,a,b){return v<a?a:(v>b?b:v);}
+
+  function build(){
+    var r=cv.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0);
+    seed=20260829;
+    var gap=cl(Math.min(W,H)*0.12,72,140), r0=cl(gap*0.1,8,13);
+    var x0=-gap*0.4, x1=W+gap*0.4, y0=-gap*0.4, y1=H+gap*0.4;
+    var sx=W*0.9, sy=H*0.9;   // seed bottom-right, diagonally opposite the name (upper-left)
+    nodes=[];
+    for(var gy=y0;gy<=y1;gy+=gap){ for(var gx=x0;gx<=x1;gx+=gap){
+      nodes.push({x:gx+(rnd()-0.5)*gap*0.55,y:gy+(rnd()-0.5)*gap*0.55,ai:rnd()<0.35});
+    }}
+    // seeds: Alice (person) + AI (agent) near centre-right, adjacent
+    nodes.unshift({x:sx+gap*0.45,y:sy,ai:true,seed:true});   // AI
+    nodes.unshift({x:sx-gap*0.45,y:sy,ai:false,seed:true});  // Alice
+    aliceIdx=0; aiIdx=1;
+    var clr=(gap*0.6)*(gap*0.6), kept=[nodes[0],nodes[1]];
+    for(var i=2;i<nodes.length;i++){var n=nodes[i];
+      if((n.x-nodes[0].x)*(n.x-nodes[0].x)+(n.y-nodes[0].y)*(n.y-nodes[0].y)<clr)continue;
+      if((n.x-nodes[1].x)*(n.x-nodes[1].x)+(n.y-nodes[1].y)*(n.y-nodes[1].y)<clr)continue; kept.push(n);}
+    nodes=kept;
+    // edges: nearest neighbours, capped, no bot-bot
+    var thr2=(gap*1.7)*(gap*1.7), cand=[];
+    for(var a=0;a<nodes.length;a++){ for(var b=a+1;b<nodes.length;b++){
+      if(nodes[a].ai&&nodes[b].ai)continue;
+      var dx=nodes[a].x-nodes[b].x, dy=nodes[a].y-nodes[b].y, d2=dx*dx+dy*dy;
+      if(d2<thr2) cand.push([a,b,d2]);
+    }}
+    cand.sort(function(p,q){return p[2]-q[2];});
+    var deg=[]; for(var q=0;q<nodes.length;q++)deg[q]=0; edges=[]; adj=[]; for(var q2=0;q2<nodes.length;q2++)adj[q2]=[];
+    for(var c=0;c<cand.length;c++){ var ci=cand[c][0],cj=cand[c][1];
+      if(deg[ci]>=4||deg[cj]>=4)continue;
+      edges.push([ci,cj]); adj[ci].push(cj); adj[cj].push(ci); deg[ci]++; deg[cj]++;
+    }
+    resetSim(0);
+  }
+
+  // ---- transmission simulation ----
+  var reached=[], reachedT=[], pulses=[], pending=[], simDone=0;
+  function resetSim(now){
+    reached=[]; reachedT=[]; pending=[]; pulses=[]; simDone=0;
+    for(var i=0;i<nodes.length;i++){ reached[i]=false; reachedT[i]=0; pending[i]=false; }
+    reached[aiIdx]=true; reachedT[aiIdx]=now;     // AI is the source
+    // first hop: AI → Alice
+    pulses.push({a:aiIdx,b:aliceIdx,t0:now+300,dur:700}); pending[aliceIdx]=true;
+  }
+  var PDUR=760;
+  function emit(from,now){ var ns=adj[from]||[]; for(var k=0;k<ns.length;k++){ var j=ns[k];
+    if(!reached[j]&&!pending[j]){ pulses.push({a:from,b:j,t0:now+ (120+rnd()*260), dur:PDUR}); pending[j]=true; } } }
+
+  function person(x,y,r,col,a){ var c=rgba(col,a); ctx.fillStyle=c;
+    ctx.beginPath(); ctx.arc(x,y-r*0.5,r*0.42,0,6.2832); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x-r*0.62,y+r*0.78); ctx.lineTo(x-r*0.44,y-r*0.02); ctx.lineTo(x+r*0.44,y-r*0.02); ctx.lineTo(x+r*0.62,y+r*0.78); ctx.closePath(); ctx.fill(); }
+  function aiAgent(x,y,r,col,a){ var c=rgba(col,a); ctx.strokeStyle=c; ctx.fillStyle=c; ctx.lineWidth=Math.max(1,r*0.15); ctx.lineCap='round'; var s=r*0.78;
+    ctx.beginPath(); ctx.moveTo(x,y-s-r*0.5); ctx.lineTo(x,y-s*0.82); ctx.stroke();
+    ctx.fillRect(x-r*0.11,y-s-r*0.66,r*0.22,r*0.22);
+    ctx.strokeRect(x-s,y-s*0.78,s*2,s*1.56);
+    ctx.fillRect(x-s*0.5,y-s*0.16,r*0.18,r*0.18); ctx.fillRect(x+s*0.32,y-s*0.16,r*0.18,r*0.18);
+    ctx.fillRect(x-s*0.42,y+s*0.42,s*0.84,Math.max(1.4,r*0.09)); }
+  function redMark(x,y,r,a){ var s=r*0.42; ctx.fillStyle=rgba(COL.red,a); ctx.fillRect(x+r*0.5,y-r*0.95,s,s); }
+
+  var t0=0, raf=null, fadeIn=0;
+  function step(now){
+    if(!t0)t0=now; var t=now-t0; fadeIn=cl(t/900,0,1);
+    // advance pulses
+    var activeEdges={};
+    for(var i=pulses.length-1;i>=0;i--){ var p=pulses[i]; if(now<p.t0) continue;
+      var pr=(now-p.t0)/p.dur;
+      if(pr>=1){ if(!reached[p.b]){ reached[p.b]=true; reachedT[p.b]=now; emit(p.b,now); } pulses.splice(i,1); }
+    }
+    // detect completion → hold → loop
+    if(pulses.length===0){ if(!simDone) simDone=now; else if(now-simDone>2600){ resetSim(now); } }
+    draw(now);
+    raf=requestAnimationFrame(step);
+  }
+  function draw(now){
+    refresh(); var r0=cl(Math.min(W,H)*0.014,7,12);
+    ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H); ctx.fillStyle=COL.card; ctx.fillRect(0,0,W,H);
+    // edges: a faint latent web, and a solid link once BOTH ends are reached (the network draws itself as it spreads)
+    ctx.lineWidth=1;
+    for(var e=0;e<edges.length;e++){ var ia=edges[e][0], ib=edges[e][1], A=nodes[ia], B=nodes[ib];
+      var both=reached[ia]&&reached[ib];
+      ctx.strokeStyle=rgba(COL.silver,(both?0.34:0.08)*fadeIn); ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+    }
+    // travelling pulses (red) along their edge
+    for(var i=0;i<pulses.length;i++){ var p=pulses[i]; if(now<p.t0) continue;
+      var A=nodes[p.a],B=nodes[p.b], pr=cl((now-p.t0)/p.dur,0,1);
+      // brighten the edge being traversed
+      ctx.strokeStyle=rgba(COL.red,0.5*fadeIn); ctx.lineWidth=1.4; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(A.x+(B.x-A.x)*pr,A.y+(B.y-A.y)*pr); ctx.stroke();
+      var px=A.x+(B.x-A.x)*pr, py=A.y+(B.y-A.y)*pr, ps=r0*0.5;
+      ctx.fillStyle=rgba(COL.red,fadeIn); ctx.fillRect(px-ps,py-ps,ps*2,ps*2);
+    }
+    ctx.lineWidth=1;
+    // nodes: latent ghost until the effect arrives, then they solidify (+ red secondhand mark)
+    var GHOST=0.13;
+    for(var n2=0;n2<nodes.length;n2++){ var n=nodes[n2];
+      var rp = reached[n2] ? cl((now-reachedT[n2])/380,0,1) : 0;   // solidify ease
+      var a = (n.seed ? 1 : (GHOST+(1-GHOST)*rp)) * fadeIn;
+      var col = (n.seed&&n.ai)?COL.red:COL.ink;
+      if(n.ai) aiAgent(n.x,n.y,r0,col,a); else person(n.x,n.y,r0,col,a);
+      if(reached[n2] && !(n.seed&&n.ai)){ var ma=rp*fadeIn; if(ma>0.02) redMark(n.x,n.y,r0,ma); }
+    }
+  }
+  function start(){ t0=0; if(!raf) raf=requestAnimationFrame(step); }
+  function stop(){ if(raf){cancelAnimationFrame(raf);raf=null;} }
+  window.addEventListener('resize',function(){ build(); });
+  build();
+  function staticFallback(){ build(); fadeIn=1; for(var i=0;i<nodes.length;i++){ if(i%3!==0){reached[i]=true;reachedT[i]=-1000;} } draw(performance.now()); }
+  if(reduce){ // static: most of the network already marked (the effect has already travelled)
+    staticFallback(); addEventListener('load',staticFallback);
+  } else {
+    var heroEl=document.querySelector('.hero');
+    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ if(es[0].isIntersecting) start(); else stop(); },{threshold:0}).observe(heroEl); }
+    else start();
+  }
+  // scroll reveal for sections
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+</script>
+<script>
+/* mobile menu */
+(function(){ var t=document.getElementById('navtoggle'), n=document.getElementById('nav'); if(!t||!n) return;
+  t.addEventListener('click',function(){ var o=n.classList.toggle('open'); t.setAttribute('aria-expanded',o); t.textContent=o?'✕':'≡'; });
+  n.addEventListener('click',function(e){ if(e.target.tagName==='A'){ n.classList.remove('open'); t.setAttribute('aria-expanded','false'); t.textContent='≡'; } });
+})();
+</script>
+
+</body>
+</html>
