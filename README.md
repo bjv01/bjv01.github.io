@@ -2,6 +2,9 @@
 
 This repository contains the source code for my personal academic website, hosted at [bjv01.github.io](https://bjv01.github.io/).
 
+> **Hugo Blox is deprecated** (2026-09-14) — frozen, not removed. See [`DEPRECATED.md`](DEPRECATED.md)
+> for what is dead, what is still live, and the rules for changing either.
+
 > **2026 redesign:** the homepage is now a custom single-page site rendered via `layouts/index.html` (with `content/_index.md` neutralized). See [`REDESIGN.md`](REDESIGN.md) for how it is built, how to edit/redeploy, and how to roll back. The previous Hugo Blox site is preserved on the `previous-site` branch.
 
 ## About
