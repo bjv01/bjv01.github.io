@@ -30,7 +30,8 @@ pagination:
 enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
-ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
+# Hugo Blox demo content + empty stubs: excluded from the build so they are not indexed.
+ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$, content/courses/, content/events/, content/projects/, content/habitus\.md$]
 disableAliases: true
 outputs:
   home: [HTML, RSS, headers, redirects, backlinks]
