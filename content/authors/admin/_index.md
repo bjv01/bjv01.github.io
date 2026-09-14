@@ -86,7 +86,6 @@ education:
     date_end: 2019-06-30
     summary: |
       First-Class Honours (10/10)
-      President of the Student Union (2018) and representative to Superior Council (2017)
 
 work:
   - position: General Information Coordinator
@@ -143,10 +142,6 @@ skills:
         description: 'Strategic planning and execution'
         percent: 90
         icon: briefcase
-      - name: Student Leadership
-        description: 'Federation president and coordinator'
-        percent: 85
-        icon: user-group
 
 languages:
   - name: Spanish
